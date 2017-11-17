@@ -31,7 +31,7 @@
       // Author information
       presenters: [
             {
-        name:  '<span style="color:#88398A" "=""> <font size="6">Natalia da Silva, @pacocuak</span></font>' ,
+        name:  '<span style="color:#88398A" "=""> <font size="6">Natalia da Silva, @pacocuak, <a href="http://ndasilva.public.iastate.edu" class="uri">http://ndasilva.public.iastate.edu</a></span></font>' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -380,8 +380,8 @@ Faceteado con facet_grid </span></h2></hgroup><article  id="faceteado-con-facet_
 
 <p><img src="R-LadiesMVD_ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" /></p>
 
-<p>##<span style="color:#88398A">
-Otros geoms: geom_smooth</span></p>
+</article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
+Otros geoms: geom_smooth</span></h2></hgroup><article  id="otros-geoms-geom_smooth">
 
 <p>Cuando substituímos <code>geom_pont()</code> por otro <code>geom</code> obtenemos un plot distinto. Los <code>geom</code> más comunes:</p>
 
@@ -395,7 +395,7 @@ change over time.--></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
-Otros geoms: geom_smooth</span></h2></hgroup><article  id="otros-geoms-geom_smooth">
+Otros geoms: geom_smooth</span></h2></hgroup><article  id="otros-geoms-geom_smooth-1">
 
 <p>Si el scatterplot tiene mucho ruido se puede usar un suavizado para facilitar ver el patrón dominante usando <code>geom_smooth()</code>.</p>
 
@@ -461,7 +461,7 @@ Incluir labs </span></h2></hgroup><article  id="incluir-labs-1">
 
 <ul>
 <li><p><code>theme</code> en un plot permite contolar los elementos que no son datos en tu plot.</p></li>
-<li><p>Ayuda a hacer tu plot esteéticamente como lo quereés no afecta el mapeo de datos.</p></li>
+<li><p>Ayuda a hacer tu plot estéticamente como lo querés no afecta el mapeo de datos.</p></li>
 <li><p><code>theme</code> te da control sobre las fuente, el fondo, ticks, etc.</p></li>
 </ul>
 
@@ -492,7 +492,13 @@ R-Ladies theme by Sam Tyner!!</span></h2></hgroup><article  id="r-ladies-theme-b
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 R-Ladies theme</span></h2></hgroup><article  id="r-ladies-theme">
 
-<p><img src="R-LadiesMVD_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="720" /></p>
+</article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
+R-Ladies theme ejemplo propina</span></h2></hgroup><article  id="r-ladies-theme-ejemplo-propina">
+
+<pre class = 'prettyprint lang-r'>ggplot(data = tips, aes(x = totbill, y = tip)) +
+  geom_point() + r_ladies_theme()</pre>
+
+<p><img src="R-LadiesMVD_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="384" style="display: block; margin: auto;" /></p>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
  Más geoms</span></h2></hgroup><article  id="mas-geoms">
