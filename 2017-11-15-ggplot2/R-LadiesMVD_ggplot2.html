@@ -133,6 +133,8 @@
 <li><p>A trabajar junt@s!</p></li>
 </ul>
 
+<p>Las transparencias están disponibles en:</p>
+
 <p><a href='https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-11-15-ggplot2' title=''>https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-11-15-ggplot2</a></p>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
@@ -170,44 +172,16 @@ Importancia de la visulización</span></h2></hgroup><article  id="importancia-de
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 ggplot2 </span></h2></hgroup><article  id="ggplot2">
 
-<!-- Advantages of ggplot2 -->
-
-<!-- consistent underlying grammar of graphics (Wilkinson, 2005) -->
-
-<!-- plot specification at a high level of abstraction -->
-
-<!-- very flexible -->
-
-<!-- theme system for polishing plot appearance -->
-
-<!-- mature and complete graphics system -->
-
-<!-- many users, active mailing list -->
-
-<!-- That said, there are some things you cannot (or should not) do With ggplot2: -->
-
-<!-- 3-dimensional graphics (see the rgl package) -->
-
-<!-- Graph-theory type graphs (nodes/edges layout; see the igraph package) -->
-
-<!-- Interactive graphics (see the ggvis package) -->
-
-<!-- - ggplot2 tiene una teoría que sustenta su contruccion basada en una gramatica grafica, la mayoría de los paquetes de gráficos son una coleccion de casos especiales -->
-
 <ul>
 <li>Conjunto de componentes independientes, le da flexibilidad</li>
 <li>No limitado a gráficos pre determinados, crear lo que quieras</li>
 <li>Definido en base a un conjunto de principios, fácil de aprender</li>
-<li>Puedés producir gráficos estandard de calidad publicable en poco tiempo <!-- - ggplot2 hace que tus gráficos luzcan lindos, así que podés usar tu tiempo para pensar  que gráfico que mejor muestra tus datos. --></li>
+<li>Puedés producir gráficos estandard de calidad publicable en poco tiempo</li>
 <li>Diseñado para trabajar iterativamente agregando capas</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 Gramática de gráficos </span></h2></hgroup><article  id="gramatica-de-graficos">
-
-<!-- What Is The Grammar Of Graphics? -->
-
-<!-- The basic idea: independently specify plot building blocks and combine them to create just about any kind of graphical display you want. Building blocks of a graph include: -->
 
 <ul>
 <li><strong>data</strong>: con mapeos (aes) entre los datos y los elementos gráficos</li>
@@ -232,16 +206,6 @@ Instalar ggplot2</span></h2></hgroup><article  id="instalar-ggplot2">
 <pre class = 'prettyprint lang-r'>install.packages(&quot;devtools&quot;)
 library(devtools)
 install_github(&quot;tidyverse/ggplot2&quot;)</pre>
-
-<!-- ##<span style="color:#88398A">Ejemplo propina</span> -->
-
-<!-- - Cargar los datos  -->
-
-<!-- - Principal pregunta a responder Qué afecta el comportamiento de la propina? -->
-
-<!-- - Arrancamos con la pregunta de identificar la relación entre la propina y el total de la cuenta -->
-
-<!-- For each of these kind of questions we need to first think about our expectation, and then check whether these expectations are met in the plot. If we find something surprising or unexpected, we need to follow up on it.  -->
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
  Ejemplo propina </span></h2></hgroup><article  id="ejemplo-propina">
@@ -278,11 +242,7 @@ Tres componentes de todo plot</span></h2></hgroup><article  id="tres-componentes
 
 <pre class = 'prettyprint lang-r'>ggplot(data = tips, aes(x = totbill, y = tip)) +  geom_point() </pre>
 
-<p><img src="R-LadiesMVD_ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="288" style="display: block; margin: auto;" /> <!-- Pay attention to the structure of this function call: data and aesthetic --> <!-- mappings are supplied in ggplot(), then layers are added on with +. This is an important pattern, and as you learn more about ggplot2 you’ll construct increasingly sophisticated plots by adding on more types of components. --></p>
-
-<!-- 14 2 Getting Started with ggplot2 -->
-
-<!-- Almost every plot maps a variable to x and y, so naming these aesthetics is tedious, so the first two unnamed arguments to aes() will be mapped to x and y. This means that the following code is identical to the example above: -->
+<p><img src="R-LadiesMVD_ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="288" style="display: block; margin: auto;" /></p>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 Ejemplo tips</span></h2></hgroup><article  id="ejemplo-tips">
@@ -290,12 +250,7 @@ Ejemplo tips</span></h2></hgroup><article  id="ejemplo-tips">
 <p>¿Qué vemos?</p>
 
 <ul>
-<li>Hay una relación lineal débil entre propina y la cuenta total</li>
-</ul>
-
-<!-- - as total bill increases, the amount of tip increases as well. The relationship is not as strong as we might have thought ahead of time -->
-
-<ul>
+<li><p>Hay una relación lineal débil entre propina y la cuenta total</p></li>
 <li><p>Hay mucha variabilidad</p></li>
 <li><p>Las lineas horizontales indican la preferencia de la gente a dar de a 1 dólar de propina c/u</p></li>
 </ul>
@@ -322,7 +277,7 @@ Color </span></h2></hgroup><article  id="color">
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 Color fijo </span></h2></hgroup><article  id="color-fijo">
 
-<p>Si queremos fijar un estético a un valor fijo hay que hacerlo en la capa de afuera sin aes. <!-- Different types of aesthetic attributes work better with different types of variables. For example, colour and shape work well with categorical variables, while size works well for continuous variables. --></p>
+<p>Si queremos fijar un estético a un valor fijo hay que hacerlo en la capa de afuera sin aes.</p>
 
 <pre class = 'prettyprint lang-r'>ggplot(data = tips, aes(x = totbill, y = tip) )+
   geom_point(colour = &quot;blue&quot;) </pre>
@@ -386,12 +341,11 @@ Otros geoms: geom_smooth</span></h2></hgroup><article  id="otros-geoms-geom_smoo
 <p>Cuando substituímos <code>geom_pont()</code> por otro <code>geom</code> obtenemos un plot distinto. Los <code>geom</code> más comunes:</p>
 
 <ul>
-<li><code>geom_smooth()</code> <!-- Ajusta un metodo de suavizado y dibuja el ajuste y el error estandard--></li>
+<li><code>geom_smooth()</code><br/></li>
 <li><code>geom_boxplot()</code></li>
-<li><code>geom_histogram()</code> <!-- Distri de variables continuas --></li>
-<li><code>geom_bar()</code> <!-- dist de variabels categoricas --></li>
-<li><code>geom_path()</code> y <code>geom_lines()</code><!--andgeomline()drawlinesbetweenthedatapoints.Alineplot is constrained to produce lines that travel from left to right, while paths can go in any direction. Lines are typically used to explore how things
-change over time.--></li>
+<li><code>geom_histogram()</code></li>
+<li><code>geom_bar()</code></li>
+<li><code>geom_path()</code> y <code>geom_lines()</code></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
@@ -582,163 +536,7 @@ Solución IV</span></h2></hgroup><article  id="solucion-iv">
 </article></slide><slide class=""><hgroup><h2><span style="color:#88398A">
 CHAU!!</span></h2></hgroup><article  id="chau">
 
-<p>GRACIAS POR VENIR!!! <!-- ##<span style="color:#88398A">Ejemplo tips</span> --> <!-- ```{r, echo = TRUE, fig.height = 4, fig.width = 7, warning = FALSE, message=FALSE,fig.align="center", strip.white=TRUE } --> <!-- # Follow up on the horizontal lines: --> <!-- ggplot(data = tips, aes(x = tip)) + --> <!--   geom_histogram() --> <!-- ``` --></p>
-
-<!-- ##<span style="color:#88398A">Ejemplo tips</span> -->
-
-<!-- # histograms have parameter binwidth. Make sure to set it. -->
-
-<!-- ```{r, echo = TRUE, fig.height = 4, fig.width = 7, warning = FALSE, message=FALSE,fig.align="center", strip.white=TRUE } -->
-
-<!-- ggplot(data = tips, aes(x = tip)) + -->
-
-<!--   geom_histogram(binwidth = 1) -->
-
-<!-- # What do we see? -->
-
-<!-- # - essentially a one modal distribution, with a mode of about $2.50 -->
-
-<!-- # - tips have a skew distribution: lots of small tips, very few very large tips.  -->
-
-<!-- ``` -->
-
-<!-- ##<span style="color:#88398A">Ejemplo tips</span> -->
-
-<!-- ```{r, echo = TRUE, fig.height = 4, fig.width = 7, warning = FALSE, message=FALSE,fig.align="center", strip.white=TRUE } -->
-
-<!-- ggplot(data = tips, aes(x = tip)) + -->
-
-<!--   geom_histogram(binwidth = .1) -->
-
-<!--   ``` -->
-
-<!-- # What do we see now? -->
-
-<!-- # - lots of modes!  -->
-
-<!-- # - large number of observations at full and half-dollar tip amounts.  -->
-
-<!-- ##<span style="color:#88398A">Ejemplo tips</span> -->
-
-<!-- ```{r, echo = TRUE, fig.height = 4, fig.width = 7, warning = FALSE, message=FALSE, fig.align = "center", strip.white=TRUE } -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y = tip)) + -->
-
-<!--   geom_point() + -->
-
-<!--   geom_abline(intercept = 0, slope = 0.20, colour = "grey50") +  -->
-
-<!--   theme_bw() -->
-
-<!-- ``` -->
-
-<!-- ### What affects tip rate? -->
-
-<!-- WE need to first introduce a tip rate: -->
-
-<!-- ```{r} -->
-
-<!-- # Let's introduce a tip rate -->
-
-<!-- tips$tiprate <- tips$tip / tips$totbill -->
-
-<!-- summary(tips$tiprate) -->
-
-<!-- ggplot(data = tips, aes(x = tiprate)) + geom_histogram() -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y = tiprate)) + geom_point() -->
-
-<!-- # interesting! as total amount increases, the tip rate decreases.  -->
-
-<!-- ggplot(data = tips, aes(x = sex, y = tiprate)) + geom_point() -->
-
-<!-- ggplot(data = tips, aes(x = sex, y = tiprate)) + geom_jitter() -->
-
-<!-- ggplot(data = tips, aes(x = sex, y = tiprate)) + geom_boxplot() -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y= tip)) + -->
-
-<!--   geom_point(aes(colour = sex)) -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y= tip)) + -->
-
-<!--   geom_point(aes(colour = sex)) +  -->
-
-<!--   facet_wrap(~sex) -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y= tip)) + -->
-
-<!--   geom_point(aes(colour = sex)) +  -->
-
-<!--   facet_wrap(~sex) +  -->
-
-<!--   geom_smooth(method = "lm") -->
-
-<!-- ggplot(data = tips, aes(x = totbill, y= tip, colour = sex)) + -->
-
-<!--   geom_point() +  -->
-
-<!--   facet_wrap(~sex) +  -->
-
-<!--   geom_smooth(method = "lm") -->
-
-<!-- ``` -->
-
-<!-- ## Try it -->
-
-<!-- Using ggplot2,  -->
-
-<!-- create plots to investigate the relationship between tip rate and smoking, -->
-
-<!-- ```{r} -->
-
-<!-- head(tips) -->
-
-<!-- ggplot( data = tips, aes(x = smoker, y = tiprate)) + -->
-
-<!--   geom_boxplot() -->
-
-<!-- ``` -->
-
-<!-- investigate, whether there is a particularly good day of the week for a waiter to volunteer, -->
-
-<!-- ```{r} -->
-
-<!-- ggplot( data = tips, aes(x = day, y = tip)) + -->
-
-<!--   geom_boxplot() -->
-
-<!-- ``` -->
-
-<!-- create a plot that is facetted by smoking and gender (read the R help with ```?facet_grid```). -->
-
-<!-- ```{r} -->
-
-<!-- ggplot( data = tips, aes(x = totbill, y = tip)) + -->
-
-<!--   geom_point() + -->
-
-<!--   facet_grid(smoker~sex) -->
-
-<!-- ``` -->
-
-<!-- Why is it not a good strategy to include smoking as shape and sex as color in a scatterplot of total bill and tip? - Draw the plot to make sure that is a bad strategy. -->
-
-<!-- ```{r} -->
-
-<!-- # bad plot: shape and color interfer with each other, making the plot hard to read. -->
-
-<!-- ggplot( data = tips, aes(x = totbill, y = tip)) + -->
-
-<!--   geom_point(aes(shape = smoker, colour=sex))  -->
-
-<!-- # better plot -->
-
-<!-- ggplot( data = tips, aes(x = totbill, y = tip)) + -->
-
-<!--   geom_point(aes(colour= interaction(sex, smoker)))  -->
-
-<!-- ``` --></article></slide>
+<p>GRACIAS POR VENIR!!!</p></article></slide>
 
 
   <slide class="backdrop"></slide>

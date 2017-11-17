@@ -1,4 +1,4 @@
-# Visualización de datos con  `ggplot2`, @R-LadiesMVD
+# Visualización de datos con  `ggplot2`, @RLadiesMVD 
 
 
 Material preparado por: Natalia da Silva, @pacocuak
