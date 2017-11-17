@@ -30,8 +30,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - A trabajar junt\@s!
 
-https://github.com/rladies/meetup-presentations_montevideo/2017-11-15-ggplot2
-
+https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-11-15-ggplot2
 
 ## <span style="color:#88398A">Importancia de la visulización</span> 
 
