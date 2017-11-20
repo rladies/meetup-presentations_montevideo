@@ -6,13 +6,13 @@
  
   R-Ladies Montevideo founded in June 2017
   
-  Co-organizer Natalia da Silva and Daniela Vázquez
+  Co-organizers: Natalia da Silva and Daniela Vázquez 
   
-  Send us an e-mail at *montevideo@rladies.org*
+  Send us an e-mail at *montevideo@rladies.org
   for further information!
   
 
-- [2017](2017)
+- [2017 Presentations](2017)
   
   - [2017-08-30 First meetup](#2017-08-30-kickoff)
   
