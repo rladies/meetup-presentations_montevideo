@@ -18,6 +18,7 @@
   
   - [2017-11-15 Second meetup](#2017-11-15-ggplot2)
 
+  - [2017-12-13 Third meetup](#2017-12-13-Viz_genomics+NASADatanauts)
 
 
  
