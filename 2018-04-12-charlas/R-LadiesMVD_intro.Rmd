@@ -69,11 +69,10 @@ https://gqueiroz.shinyapps.io/rshinylady/
 
 ## <span style="color:#88398A">R-Ladies Montevideo Planes</span>
 
-Talleres:
 
-- Transformación de datos usando `dplyr`. Paula Pereda
+- Investigación reproducible con `RMarkdown`. Paula Pereda
 
-- Investigación reproducible con `RMarkdown`. Voluntaria/s?
+- Transformación de datos usando `dplyr`. Voluntaria/s?
 
 - Control de versionado y trabajo colaborativo usando `git` y `GitHub` Voluntaria/s?
 
@@ -81,7 +80,7 @@ Talleres:
 
 ## <span style="color:#88398A">LatinR</span>
 
-- Conferencia de usuarios de R para ivestigación y desarrollo
+- Conferencia de usuarios de R para investigación y desarrollo
 - Buenos Aires 4-5 Setiembre
 - Oradores Plenarios Jenny Bryan y Walter Sosa
 - Envios de trabajos 30 de Abril
@@ -91,10 +90,12 @@ Talleres:
 
 ## <span style="color:#88398A">Invitadas</span>
 
-- Florencia Díaz Viraqué: Lic.Bioquímica, Msc. en Ciencias Biológicas.
-Actualmente estudiante de PhD en Biología molecular en @IPMontevideo.
-Coódigo y paquetes para el análisis y visualización de secuencias biológicas en R
+- **Florencia Díaz Viraqué**: Lic.Bioquímica, Msc. en Ciencias Biológicas.
+Actualmente estudiante de PhD en Biología molecular en @IPMontevideo.  
+
+ Presenta: Código y paquetes para el análisis y visualización de secuencias biológicas en R
 
 
-- Fiorella Cavallieri: Lic. Estadística y Economía, Docente FMED.
-Modelos mixtos ¿ `nmle` o `lme4`?
+- **Fiorella Cavallieri**: Lic. Estadística y Economía, Docente FMED.  
+
+Presenta: Modelos mixtos ¿ `nmle` o `lme4`?
