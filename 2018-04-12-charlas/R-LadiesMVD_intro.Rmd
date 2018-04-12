@@ -49,12 +49,16 @@ https://gqueiroz.shinyapps.io/rshinylady/
 - 118 miembros en meetup
 - Primer meetup: 30 de Agosto de 2017
 
-## <span style="color:#88398A">R-Ladies Montevideo Organizadoras</span>
+## <span style="color:#88398A">R-Ladies Montevideo equipo</span>
+
+- Daniela Vazquez
+- Natalia da Silva
+
+Colaboradoras 2018!:
 
 - María Inés Fariello
 - Paula Pereda
-- Daniela Vazquez
-- Natalia da Silva
+
 
 ## <span style="color:#88398A">R-Ladies Montevideo</span>
 
@@ -70,7 +74,7 @@ https://gqueiroz.shinyapps.io/rshinylady/
 ## <span style="color:#88398A">R-Ladies Montevideo Planes</span>
 
 
-- Investigación reproducible con `RMarkdown`. Paula Pereda
+- Investigación reproducible con `RMarkdown`. Voluntaria/s?
 
 - Transformación de datos usando `dplyr`. Voluntaria/s?
 
@@ -96,6 +100,6 @@ Actualmente estudiante de PhD en Biología molecular en @IPMontevideo.
  Presenta: Código y paquetes para el análisis y visualización de secuencias biológicas en R
 
 
-- **Fiorella Cavallieri**: Lic. Estadística y Economía, Docente FMED.  
+- **Fiorella Cavalleri**: Lic. Estadística y Economía, Docente FMED.  
 
 Presenta: Modelos mixtos ¿ `nmle` o `lme4`?
