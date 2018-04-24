@@ -13,11 +13,12 @@
 
 - Presentaciones de 2017:
   
-  - [30-08-2017 Primer encuentro](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-08-30-kickoff)
+  - [30-08-2017 Primer encuentro 2017](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-08-30-kickoff)
   
-  - [15-11-2017 Segundo encuentro](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-11-15-ggplot2)
+  - [15-11-2017 Segundo encuentro 2017](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-11-15-ggplot2)
 
-  - [13-12-2017 Tercer encuentro](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-12-13-Viz_genomics%2BNASADatanauts)
+  - [13-12-2017 Tercer encuentro 2017](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2017-12-13-Viz_genomics%2BNASADatanauts)
 
 
+ - [12-04-201 Primer encuentro 2018](https://github.com/rladies/meetup-presentations_montevideo/tree/master/2018-04-12-charlas)
  
