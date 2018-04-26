@@ -14,7 +14,7 @@
     
 *Jueves 12 de abril de 2018, 19:00 hs.*
 
-+ [Novedades R-Ladies](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/R-Ladies2018.pdf)
++ [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/R-Ladies2018.pdf)
 
 + [Florencia Díaz Viraqué](https://twitter.com/fdiazviraque): [*"Código y paquetes para el análisis y visualización de secuencias biológicas en R" (más alguna joyita!)*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/florencia.pdf).
   
@@ -31,7 +31,7 @@
   
   
 + [Daniela Vázquez](https://twitter.com/d4tagirl):
-    * [“Cómo me metí en la tecnología por la ventana y en la NASA por la banderola”](https://docs.google.com/presentation/d/1YBmleq5a0211rYbhq4krHeKOfy5M6bf5gjKpbqZ26io/edit?usp=sharing). 
+    * [*“Cómo me metí en la tecnología por la ventana y en la NASA por la banderola”*](https://docs.google.com/presentation/d/1YBmleq5a0211rYbhq4krHeKOfy5M6bf5gjKpbqZ26io/edit?usp=sharing). 
   
   
 **2. Taller: Visualización de datos con ggplot2**
