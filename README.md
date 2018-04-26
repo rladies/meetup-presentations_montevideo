@@ -30,8 +30,7 @@
 + [Maine Fariello](https://twitter.com/mainefariello): [*“Visualización de datos genómicos”*](2017-12-13-Viz_genomics%2BNASADatanauts/17-12-RLadies-VizGenomica.pdf).  
   
   
-+ [Daniela Vázquez](https://twitter.com/d4tagirl):
-    * [*“Cómo me metí en la tecnología por la ventana y en la NASA por la banderola”*](https://docs.google.com/presentation/d/1YBmleq5a0211rYbhq4krHeKOfy5M6bf5gjKpbqZ26io/edit?usp=sharing). 
++ [Daniela Vázquez](https://twitter.com/d4tagirl): [*“Cómo me metí en la tecnología por la ventana y en la NASA por la banderola”*](https://docs.google.com/presentation/d/1YBmleq5a0211rYbhq4krHeKOfy5M6bf5gjKpbqZ26io/edit?usp=sharing). 
   
   
 **2. Taller: Visualización de datos con ggplot2**
