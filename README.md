@@ -18,7 +18,7 @@
 
 + [Florencia Díaz Viraqué](https://twitter.com/fdiazviraque): [*"Código y paquetes para el análisis y visualización de secuencias biológicas en R" (más alguna joyita!)*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/florencia.pdf).
   
-+ Presentado por Fiorella Cavalieri: [*"Modelos mixtos, ¿mlne o ml4?"*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/Modelos%20mixtos_11_4_18_2.pptx)
++ Fiorella Cavalieri: [*"Modelos mixtos, ¿mlne o ml4?"*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-04-12-charlas/Modelos%20mixtos_11_4_18_2.pptx)
   
 
 # 2017
