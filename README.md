@@ -27,6 +27,8 @@
     
 *Miércoles 13 de diciembre de 2017, 19:00 hs, Pyxis.*
 
++ [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2017-12-13-Viz_genomics%2BNASADatanauts/2017-13-12-R-LadiesMVD.pdf)
+
 + [Maine Fariello](https://twitter.com/mainefariello): [*“Visualización de datos genómicos”*](2017-12-13-Viz_genomics%2BNASADatanauts/17-12-RLadies-VizGenomica.pdf).  
   
   
