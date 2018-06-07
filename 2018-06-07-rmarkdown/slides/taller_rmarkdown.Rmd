@@ -14,10 +14,19 @@ output:
     includes:
       in_header: header.html
 ---
+class: inverse, center, middle
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
+
+# **Twitter**
+
+<a href="http://twitter.com/RLadiesMVD"><i class="fa fa-twitter fa-fw"></i>&nbsp; @RLadiesMVD</a><br>
+<a href="rladies"><i class="fa fa-hashtag fa-fw"></i>&nbsp; rladies</a><br>
+<a href="RLadiesLatAm"><i class="fa fa-hashtag fa-fw"></i>&nbsp; RLadiesLatAm</a><br>
+
+---
 class: middle
 
 # **¿Qué es R Markdown?**
@@ -145,6 +154,17 @@ pdf_document:
 ---
 ```
 ---
+#**Material ejercicios**
+
+```{r, eval=FALSE}
+$ git clone https://github.com/rladies/meetup-presentations_montevideo/
+```
+O,
+
+Descargar zip de acá: https://bit.ly/2M0B88F
+
+Están basados en un proyecto de [DataCamp](https://www.datacamp.com/projects/139).
+---
 #**Ejercicios: parte I**
 
 Convertir los títulos de las secciones de estos párrafos en encabezados utilizando la sintaxis apropiada, usando diferentes niveles de encabezado para las secciones y subsecciones:
@@ -161,9 +181,9 @@ class: center, middle
 
 #**Solución: parte I**
 
-
-
-![](solucion_1.png)
+```{r echo=F, out.width='90%'}
+knitr::include_graphics('solucion_1.png')
+```
 
 ---
 #**Ejercicios: parte II**
@@ -182,7 +202,9 @@ class: center, middle
 
 #**Solución: parte II**
 
-![](solucion_2.png)
+```{r echo=F, out.width='90%'}
+knitr::include_graphics('solucion_2.png')
+```
 
 ---
 #**Ejercicios: parte III**
@@ -200,18 +222,23 @@ class: center, middle
 
 #**Solución: parte III**
 
-![](solucion_3.png)
+```{r echo=F, out.width='80%'}
+knitr::include_graphics('solucion_3.png')
+```
 
 ---
 #**Ejercicios: parte IV**
 
-    1) Convertir las ecuaciones de las líneas 52, 97, 101, 105 de modo que se vean como ecuaciones de LaTeX
+    1) Convertir las ecuaciones de las líneas 52, 97, 101,
+    105 de modo que se vean como ecuaciones de LaTeX
 ---
 class: center, middle
 
 #**Solución: parte IV**
 
-![](solucion_4.png)
+```{r echo=F, out.width='90%'}
+knitr::include_graphics('solucion_4.png')
+```
 
 ---
 #**Ejercicios: parte V**
@@ -226,7 +253,9 @@ class: center, middle
 
 #**Solución: parte V**
 
-![](solucion_5.png)
+```{r echo=F, out.width='90%'}
+knitr::include_graphics('solucion_5.png')
+```
 
 ---
 class: middle
