@@ -1,0 +1,139 @@
+---
+title: "Analizando la dificultad de los niveles en Candy Crush" 
+subtitle: "Un proyecto de DataCamp"
+author: "Nombre"
+output: html_document
+---
+
+Introducción
+
+Candy Crush Saga es un exitoso juego móvil desarrollado por King. Es jugado por millones de personas en todo el mundo. El juego está estructurado como una serie de niveles donde los jugadores deben unir caramelos similares para (con suerte) borrar el nivel y seguir progresando en el mapa de nivel. 
+  
+Candy Crush tiene más de 3000 niveles y se agregan nuevos cada semana. ¡Son muchos niveles! Y con tantos niveles, es importante tener la dificultad de nivel correcta. Si es demasiado fácil, el juego se vuelve aburrido, pero si es demasiado difícil, los jugadores se frustran y dejan de jugar.
+
+En este documento, analizaremos cómo podemos usar los datos recopilados de los jugadores para estimar la dificultad de los niveles. Comencemos por cargar los paquetes que vamos a necesitar:
+
+```{r}
+library(tidyverse)
+```
+
+La base de datos 
+
+La base de datos que utilizaremos contiene una semana de datos de una muestra de jugadores que jugaron Candy Crush en 2014. Los datos también provienen de un solo episodio, es decir, un conjunto de 15 niveles. Tiene las siguientes columnas:
+
+player_id: un ID de jugador único
+dt: la fecha
+nivel: el número de nivel dentro del episodio, de 1 a 15
+num_attempts: número de intentos de nivel para el jugador en ese nivel y fecha
+num_success: número de intentos de nivel que dieron como resultado un éxito para el jugador en ese nivel y fecha
+
+En síntesis, hay una fila para cada jugador, día y nivel que registra la cantidad total de intentos y cuántos de ellos dieron como resultado una victoria.
+
+Ahora, carguemos en el conjunto de datos y echemos un vistazo a las primeras filas:
+
+```{r}
+data <- read_csv("data/candy_crush.csv") 
+
+head(data)
+```
+
+Chequeando la base de datos
+
+Ahora que ya cargamos los datos, contaremos cuántos jugadores tenemos en la muestra y cuántos días de datos tenemos. El número de jugadores es de  y el período para el que tenemos datos es .
+
+Computando el nivel de dificultad
+
+Dentro de cada episodio de Candy Crush, hay una mezcla de niveles más fáciles y más difíciles. La suerte y la habilidad individual hacen que la cantidad de intentos necesarios para pasar un nivel sea diferente de un jugador a otro. La suposición es que los niveles difíciles requieren más intentos en promedio que los más fáciles. Es decir, cuanto más difícil es un nivel, menor es la probabilidad de pasar ese nivel en un solo intento.
+
+Un enfoque simple para modelar esta probabilidad es como un proceso de Bernoulli, es decir, como un resultado binario (se gana o se pierde) caracterizado por un solo parámetro $p_{ganar}$: la probabilidad de ganar el nivel en un solo intento. Esta probabilidad se puede estimar para cada nivel como:
+
+p_{ganar}=\frac{\sum_{ganar}}{\sum_{intentos}}
+
+Por ejemplo, digamos que un nivel se ha jugado 10 veces y 2 de esos intentos terminaron en una victoria. Entonces la probabilidad de ganar en un solo intento sería $p_{ganar}$ = 2/10 = 20%.
+
+Ahora, calculemos la dificultad $p_{ganar}$ por separado para cada uno de los 15 niveles.
+
+```{r}
+difficulty <- data %>%
+group_by(level) %>%
+summarise(wins = sum(num_success), attempts = sum(num_attempts)) %>%
+mutate(p_win = wins/attempts)
+
+difficulty
+```
+
+Graficando el perfil de dificultad
+
+¡Genial! Ahora tenemos la dificultad para los 15 niveles en el episodio. Tengamos en cuenta que, cuando medimos la dificultad como la probabilidad de pasar un nivel en un solo intento, un valor menor (una menor probabilidad de ganar el nivel) implica una dificultad de nivel más alto.
+
+Ahora que tenemos la dificultad del episodio, debemos trazarlo. Vamos a trazar un gráfico de líneas con los niveles en el eje de las x y la dificultad ($p_{ganar}$) en el eje de las y. Llamamos a este argumento el perfil de dificultad del episodio.
+
+```{r}
+  ggplot(difficulty, aes(x = level, y = p_win)) +
+  geom_line() +
+  scale_x_continuous(breaks = c(1:15)) +
+  scale_y_continuous(labels = scales::percent)
+```
+
+Detectando niveles difíciles
+
+Lo que constituye un nivel difícil es subjetivo. Sin embargo, para mantener las cosas simples, podríamos definir un umbral de dificultad, digamos un 10%, y etiquetar niveles con $p_{ganar}$ < 10% tan difícil. Es relativamente fácil detectar estos niveles difíciles en la trama, pero podemos hacer que la trama sea más amigable al destacar explícitamente los niveles difíciles.
+
+```{r}
+ggplot(difficulty, aes(x = level, y = p_win)) +
+geom_line() +
+geom_point() +
+geom_hline(yintercept = 0.10, linetype = "dashed") +
+scale_x_continuous(breaks = c(1:15)) +
+scale_y_continuous(labels = scales::percent)
+```
+
+Computando la incertidumbre
+
+Siempre deberíamos informar alguna medida de la incertidumbre de los números proporcionados. Tal vez mañana, otra muestra nos dará valores ligeramente diferentes para las dificultades. Aquí simplemente usaremos el error estándar como medida de incertidumbre:
+
+\sigma_{error} \approx \frac{\sigma_{muestra}}{\sqrt{n}}
+
+$n$ es el número de puntos de datos y $\sigma_{muestra}$ es la desviación estándar de la muestra. Para un proceso de Bernoulli, la desviación estándar de la muestra es:
+
+\sigma_{muestra} = \sqrt{p_{ganar}(1-p_{ganar})}
+
+Por lo tanto, podemos calcular el error estándar de esta manera:
+
+\sigma_{error} \approx \sqrt{\frac{p_{ganar}(1-p_{ganar})}{n}}
+
+¡Ya tenemos todo lo que necesitamos en el marco de datos de dificultad! Cada nivel se ha jugado $n$ número de veces y tenemos su dificultad $p_{ganar}$. Ahora, calculemos el error estándar para cada nivel.
+
+```{r}
+  difficulty <- difficulty %>%
+  mutate(error = sqrt(p_win*(1-p_win)/attempts))
+```
+
+Mostrando incertidumbre
+
+Ahora que tenemos una medida de incertidumbre para la estimación de dificultad de cada nivel, usemos barras de error para mostrar esta incertidumbre en la gráfica. Estableceremos la longitud de las barras en un error estándar. El límite superior y el límite inferior de cada barra de error deberían ser $p_{ganar} + \sigma_{error}$ y $p_{ganar} - \sigma_{error}$, respectivamente.
+
+
+```{r}
+  ggplot(difficulty, aes(x = level, y = p_win)) +
+  geom_line() +
+  geom_point() +
+  geom_hline(yintercept = 0.10, linetype = "dashed") +
+  geom_errorbar(aes(ymin = p_win - error, ymax = p_win + error)) +
+  scale_x_continuous(breaks = c(1:15)) +
+  scale_y_continuous(labels = scales::percent)
+```
+
+Una métrica final
+
+¡Parece que nuestras estimaciones de dificultad son bastante precisas! Usando esta trama, un diseñador de niveles puede detectar rápidamente dónde están los niveles difíciles y también ver si parece que hay demasiados niveles difíciles en un mismo episodio.
+
+Una pregunta que un diseñador de niveles podría hacerse es: "¿Cuán probable es que un jugador complete el episodio sin perder una sola vez?" ¡Calculemos esto usando las dificultades de nivel estimadas!
+
+```{r}
+p <- prod(difficulty$p_win)
+
+p
+```
+
+Dado que la probabilidad que acabamos de calcular es realmente pequeña, concluimos que nuestro diseñador de niveles no debería preocuparse de que muchos jugadores completen el episodio en un intento.
