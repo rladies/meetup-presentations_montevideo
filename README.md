@@ -10,6 +10,13 @@
  
  # 2018
  
+**2. Taller R Markdown: informes dinámicos y reproducibles**
+  
+*Jueves 7 de junio, 19:00 hs, Ingenious.*
+
++ [Paula Pereda](https://twitter.com/paubgood): [*“informes dinámicos y reproducibles en R”*](2018-06-07-rmarkdown).  
+   
+ 
 **1. Visualización de Secuencias Biológicas + Modelos Mixtos**
     
 *Jueves 12 de abril de 2018, 19:00 hs.*
@@ -29,7 +36,7 @@
 
 + [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2017-12-13-Viz_genomics%2BNASADatanauts/2017-13-12-R-LadiesMVD.pdf)
 
-+ [Maine Fariello](https://twitter.com/mainefariello): [*“Visualización de datos genómicos”*](2017-12-13-Viz_genomics%2BNASADatanauts/17-12-RLadies-VizGenomica.pdf).  
++ [Maine Fariello](https://twitter.com/mainefariello): [*“Visualización de datos genómicos”*](2017-12-13-Viz_genomics%2BNASADatanauts/17-12-RLadies-VizGenomica.pdf). 
   
   
 + [Daniela Vázquez](https://twitter.com/d4tagirl): [*“Cómo me metí en la tecnología por la ventana y en la NASA por la banderola”*](https://docs.google.com/presentation/d/1YBmleq5a0211rYbhq4krHeKOfy5M6bf5gjKpbqZ26io/edit?usp=sharing). 
