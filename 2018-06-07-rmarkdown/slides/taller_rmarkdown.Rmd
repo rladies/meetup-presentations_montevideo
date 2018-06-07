@@ -1,0 +1,288 @@
+---
+title: "Taller R Markdown 💃🏽"
+subtitle: "Informes dinámicos y reproducibles con R"
+author: "R-Ladies Montevideo - Paula Pereda"
+date: "7/6/2018"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: header.html
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+class: middle
+
+# **¿Qué es R Markdown?**
+
+1) marco unificado para ciencia de datos
+
+2) combina:
+    
+    - código
+    
+    - resultados 
+    
+    - comentarios en prosa 
+3) los documentos R Markdown:
+     
+     - son totalmente reproducibles y automatizables
+     
+     - admiten muchos formatos de salida
+     
+[¿Por qué es tan importante?](https://www.youtube.com/watch?v=s3JldKoA0zw)
+     
+---
+
+class: center, middle    
+
+![](https://rmarkdown.rstudio.com/images/RMarkdownOutputFormats.png)
+
+---
+class: middle, center
+
+![](rmarkdown.png)
+
+---
+#**Instalar R Markdown**
+
+```{r, eval=FALSE}
+install.packages("rmarkdown")
+install.packages("knitr")
+install.packages("tidyverse")
+
+library(rmarkdown)
+library(knitr)
+library(tidyverse)
+```
+---
+#**Detrás de escenas**
+
+1) Cuando le damos `knit` al documento, R Markdown envía el archivo `.Rmd` a knitr, este ejecuta los fragmentos de código y crea un nuevo documento de formato `.md` que incluye el código y su salida
+
+2) Este archivo generado es luego procesado por `pandoc`, que es responsable de crear el archivo terminado. 
+
+`Ventaja flujo de trabajo de dos pasos:` ¡se puede crear una amplia gama de formatos de salida!
+
+![](http://r4ds.had.co.nz/images/RMarkdownFlow.png)
+---
+
+#**Sintaxis**
+
+- `*cursiva*` y `_cursiva_`
+
+- `**negrita**` y `__negrita__`
+
+- `[link](www.rstudio.com)`
+
+- `# Encabezado 1`
+
+- `## Encabezado 2`
+
+- `### Encabezado 3`
+
+- imagen: `![](camino/a/imagen.png)`
+
+- ` - lista`
+
+---
+#**Código**
+
+    1) Código incrustado: envuelvo el código con contratildes y r, R reemplaza el código 
+    en línea con sus resultados
+   
+    2) Fragmentos de código: comienza un trozo (chunk) con ```{r} y lo termino con ```
+
+
+Opción  | Efecto
+------  | -------------------
+include | ¿Muestra el fragmento de código de R y su resultado?
+echo    | ¿Muestra el fragmento de código de R?
+message | ¿Muestra los mensajes de salida?
+warning | ¿Muestra las advertencias?
+eval    | ¿Evalúa el fragmento de código?
+---
+#**Ecuaciones LaTeX**
+
+- se pueden escribir en modo matemático en la línea de texto comenzando y terminando con `$`, por ejemplo: `$\alpha+\beta$` muestra $\alpha+\beta$
+
+- se pueden escribir ecuaciones comenzando y terminando con `$$`, por ejemplo:
+
+$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
+
+---
+# **Configuración avanzada del YAML**
+
+```{r, eval=FALSE}
+---
+title: "Analizando la dificultad de los niveles en Candy Crush" 
+subtitle: "Un proyecto de DataCamp"
+author: "Paula Pereda"
+output: html_document
+---
+```
+
+```{r, eval=FALSE}
+---
+title: "Analizando la dificultad de los niveles en Candy Crush" 
+subtitle: "Un proyecto de DataCamp"
+author: "Paula Pereda"
+output:
+   html_document:
+      theme: paper
+      highlight: tango
+      toc: true
+      code_folding: show
+pdf_document:
+...
+---
+```
+---
+#**Ejercicios: parte I**
+
+Convertir los títulos de las secciones de estos párrafos en encabezados utilizando la sintaxis apropiada, usando diferentes niveles de encabezado para las secciones y subsecciones:
+
+    1) Secciones (encabezados de primer nivel): Introducción, La base de datos, Computando 
+    el nivel de dificultad, Computando la incertidumbre, Una métrica final
+
+    2) Subsecciones (encabezados de segundo nivel): Chequeando la base de datos, Graficando 
+    el perfil de dificultad, Detectando niveles difíciles, Mostrando incertidumbre
+
+    3) Haga una lista con las columnas de la base de datos (líneas 24-28)
+---
+class: center, middle
+
+#**Solución: parte I**
+
+
+
+![](solucion_1.png)
+
+---
+#**Ejercicios: parte II**
+
+    1) En la línea 10, convertir "Candy Crush Saga" en negrita
+
+    2) Convertir "King" (línea 10) en un link hacia: 
+    https://es.wikipedia.org/wiki/King_(empresa)
+
+    3) Enfatice el texto en la línea 141 convirtiéndola en itálica
+
+    4) Incluir la imagen del siguiente link en la Introducción:
+    http://www.garotasgeeks.com/wp-content/uploads/2014/05/candy-crush1-610x240.png
+---
+class: center, middle
+
+#**Solución: parte II**
+
+![](solucion_2.png)
+
+---
+#**Ejercicios: parte III**
+
+    1) Quitar los mensajes que genera el cargar la librería en la línea 18
+
+    2) Cargar los datos y mostrar las primeras filas de la base de datos (línea 36) 
+    sin que me muestre el código ni los mensajes
+
+    3) Sabiendo que el código para calcular el número de jugadores y el período que 
+    abarcan los datos es length(unique(data$player_id)) y range(data$dt), 
+    respectivamente, completar con un código incrustado la línea 44
+---
+class: center, middle
+
+#**Solución: parte III**
+
+![](solucion_3.png)
+
+---
+#**Ejercicios: parte IV**
+
+    1) Convertir las ecuaciones de las líneas 52, 97, 101, 105 de modo que se vean como ecuaciones de LaTeX
+---
+class: center, middle
+
+#**Solución: parte IV**
+
+![](solucion_4.png)
+
+---
+#**Ejercicios: parte V**
+
+    1) Agregar el theme "paper"
+
+    2) Aregar índice
+
+    3) ¿Qué pasa si agrego la opción 'code_folding: show'?
+---
+class: center, middle
+
+#**Solución: parte V**
+
+![](solucion_5.png)
+
+---
+class: middle
+
+# **xaringan: R-Ladies theme**
+
+```{r, eval=FALSE}
+library(devtools)
+install_github("yihui/xaringan")
+```
+
+.pull-left[
+Puedo señalar código usando asteriscos `*`:
+
+    ```r
+    if (TRUE) {
+    ** message("Very important!")
+    }
+    ```
+Output:
+```r
+if (TRUE) {
+* message("Very important!")
+}
+```
+]
+
+.pull-right[
+O usando `{{}}`:
+
+    `r ''````{r tidy=FALSE}
+    if (TRUE) {
+    *{{ message("Very important!") }}
+    }
+    ```
+Output:
+```{r tidy=FALSE}
+if (TRUE) {
+{{ message("Very important!") }}
+}
+```
+
+]
+
+---
+class: center, middle
+
+# **¡Muchas gracias!**
+
+![](https://media.giphy.com/media/q9lNzUPfLAbBK/giphy.gif)
+
+---
+class: inverse, center, middle
+
+<a href="mailto:paubgood@rladies.org"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; paubgood@rladies.org</a><br>
+<a href="http://twitter.com/paubgood"><i class="fa fa-twitter fa-fw"></i>&nbsp; @paubgood</a><br>
+<a href="http://github.com/paupereda"><i class="fa fa-github fa-fw"></i>&nbsp; @paupereda</a><br>
+
+las slides fueron creadas a través del paquete [**xaringan**](https://github.com/yihui/xaringan)

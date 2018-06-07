@@ -1,0 +1,50 @@
+---
+title: "R-Ladies Montevideo: ejercicios - taller R Markdown"
+subtitle: Paula Pereda
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Parte I: dándole estructura a un documento
+
+Convertir los títulos de las secciones de estos párrafos en encabezados utilizando la sintaxis apropiada, usando diferentes niveles de encabezado para las secciones y subsecciones:
+
+- Secciones (encabezados de primer nivel): Introducción, La base de datos, Computando el nivel de dificultad, Computando la incertidumbre, Una métrica final
+
+- Subsecciones (encabezados de segundo nivel): Chequeando la base de datos, Graficando el perfil de dificultad, Detectando niveles difíciles, Mostrando incertidumbre
+
+- Haga una lista con las columnas de la base de datos (líneas 24-28)
+
+# Parte II: Cambiando el formato del texto
+
+- En la línea 10, convertir "Candy Crush Saga" en **negrita**
+
+- Convertir "King" (línea 10) en un link hacia: https://es.wikipedia.org/wiki/King_(empresa)
+
+- Enfatice el texto en la línea 141 convirtiéndola en *itálica*
+
+- Incluir la imagen del siguiente link en la Introducción http://www.garotasgeeks.com/wp-content/uploads/2014/05/candy-crush1-610x240.png
+
+# Parte III: Code chunks
+
+- Quitar los mensajes que genera el cargar la librería en la línea 18
+
+- Cargar los datos y mostrar las primeras filas de la base de datos (línea 38) sin que me muestre el código ni los mensajes
+
+- Sabiendo que el código para calcular el número de jugadores y el período que abarcan los datos es length(unique(data\$player\_id)) y range(data\$dt), respectivamente, completar con un código incrustado la línea 44
+
+# Parte IV: Ecuaciones LaTeX
+
+- Convertir las ecuaciones de las líneas 52, 97, 101, 105 de modo que se vean como ecuaciones de LaTeX
+
+
+# Parte V: Customizando el reporte
+
+- Agregar el theme "paper"
+
+- Agregar índice
+
+- ¿Qué pasa si agrego la opción 'code_folding: show'?
