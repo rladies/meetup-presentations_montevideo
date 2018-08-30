@@ -95,3 +95,14 @@ options(htmltools.dir.version = FALSE)
 - Slack
 
 - ¡más talleres!
+---
+
+# **Invitadas de hoy**
+
+- **Silvana Fumega** Estandarización de datos de femicidios en Latinoamérica
+
+
+- **Elina Gómez** Acoso sexual callejero Análisis cualitativo usando R
+
+
+- **Gabriela Mathieu** Aplicación Shiny: Cartografía digital de feminicidios en Uruguay
