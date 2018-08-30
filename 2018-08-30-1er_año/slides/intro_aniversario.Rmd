@@ -1,0 +1,97 @@
+---
+title: "¡Primer cumple R-Ladies Montevideo! 💃🏽"
+date: "30/08/2018"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: header.html
+---
+class: inverse, center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# **Twitter**
+
+<a href="http://twitter.com/RLadiesMVD"><i class="fa fa-twitter fa-fw"></i>&nbsp; @RLadiesMVD</a><br>
+<a href="rladies"><i class="fa fa-hashtag fa-fw"></i>&nbsp; rladies</a><br>
+<a href="RLadiesLatAm"><i class="fa fa-hashtag fa-fw"></i>&nbsp; RLadiesLatAm</a><br>
+
+---
+
+# **Nuestro primer año** 
+  
+  - **Primer encuentro:** 30 de agosto de 2017
+
+  - **meetup:** ¡arrancamos siendo 65 y hoy somos 147! 
+  
+  -  **13 invitadas**
+  
+  - **6 encuentros**:
+  
+             1) Primer encuentro 2017
+             
+             2) Taller de ggplot2
+             
+             3) Cierre 2017
+             
+             4) Primer encuentro 2018, inicio slack
+             
+             5) Taller de Rmarkdown
+             
+             6) Primer cumple, inauguramos cuidado para niños
+        
+
+---
+
+# **Nuestro primer año** 
+
+<img src="rladiesmvd.png" width="600" class="center">
+
+---
+# **LatinR**
+
+- 3 al 5 de Setiembre
+
+- Buenos Aires, Universidad de Palermo
+
+- Oradores plenarios: Jenny Bryan, Walter Sosa Escudero
+
+- http://latin-r.com,  @LatinR2018
+
+---
+
+# **ConectaR**
+
+- 24 al 26 de enero
+
+- Costa Rica
+
+- http://www.conectar2019.ucr.ac.cr,  @ConectaR2019
+
+---
+
+# **rstudio::conf(2019)**
+
+- 17 de enero
+
+- Austin Texas
+
+- becas de diversidad
+
+---
+
+# **Lo que se viene para R-Ladies Montevideo**
+
+- lightening talks ¿voluntarias?
+
+- Slack
+
+- ¡más talleres!
