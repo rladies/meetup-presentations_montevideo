@@ -10,6 +10,14 @@
  
  # 2018
  
+**3. Primer aniversario R-Ladies Montevideo**
+
+*Jueves 30 de agosto, 19:00 hs, Pyxis*
+
++ Silvana Fumega: [*Estandarización de datos de femicidios en Latinoamérica*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-08-30-1er_a%C3%B1o/G%C3%A9nero_datos_seguridad_silvana.pdf)
++ Gabriela Mathieu: [*Aplicación Shiny: Cartografía digital de feminicidios en Uruguay*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-08-30-1er_a%C3%B1o/Shiny_feminicidios_Gabriela.pdf)
++ Elina Gómez: [*Acoso sexual callejero. Análisis cualitativo usando R*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-08-30-1er_a%C3%B1o/Acoso_callejero_Elina.pdf)
+ 
 **2. Taller R Markdown: informes dinámicos y reproducibles**
   
 *Jueves 7 de junio, 19:00 hs, Ingenious.*
