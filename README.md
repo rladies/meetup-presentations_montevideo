@@ -10,6 +10,12 @@
  
  # 2018
  
+ **4. Taller de manipulación y transformación de datos con tidyverse**
+ 
+ *Martes 23 de octubre, 19:00 hs, Scanntech*
+ 
+ + Lucía Coudet: [*Taller de manipulación y transformación de datos con tidyverse*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-10-23-tidyverse/rladies_tidyverse.pdf)
+ 
 **3. Primer aniversario R-Ladies Montevideo**
 
 *Jueves 30 de agosto, 19:00 hs, Pyxis*
