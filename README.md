@@ -7,6 +7,15 @@
   Co-organizadoras: Natalia da Silva, Daniela Vázquez, Paula Pereda y Maine Fariello 
   
   Por más información escribinos a montevideo@rladies.org!
+  
+ # 2019
+ 
+ **1. Taller introductorio a Shiny: aplicaciones web interactivas en R**
+ 
+ *Miércoles 29 de mayo, 19.00 hs, Scanntech*
+ 
+ + [*Novedades R-Ladies 2019*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/R-Ladies_MVD_primer_encuentro.pdf)
+ + Virginia Burguete: [*Taller introductorio a Shiny: aplicaciones web interactivas en R*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/taller_shiny/documentation/Shiny.pdf)
  
  # 2018
  
