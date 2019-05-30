@@ -81,9 +81,7 @@ Tener iniciativas con perspectiva de género incentiva a dichas minorías a part
 - LatinR: Conferencia Latinoamericana de usuarios de R para investigación y desarrollo. 25-27 Septiembre. Santiago, Chile (http://latin-r.com,  @LatinR_Conf)
 
 
-- KHIPU: Latin American Meeting In Artificial Intelligence. 11-15 de Niviembre. Montevideo, Uruguay (https://khipu.ai)
-
-
+- KHIPU: Latin American Meeting In Artificial Intelligence. 11-15 de Noviembre. Montevideo, Uruguay (https://khipu.ai)
 
 
 ## <span style="color:#88398A">Invitada</span>
