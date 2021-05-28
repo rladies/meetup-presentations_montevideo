@@ -30,7 +30,7 @@
   
   *Jueves 28 de Mayo,6:00, Virtual*
   
-  + Daniela Vazquez: [*Presentación*]()
+  + Daniela Vazquez: [*Grabación*](https://www.youtube.com/watch?v=BqNuFWCx4cg&t=14s)
  
   **1. Watch party: RStudio::conf 2020**
   
