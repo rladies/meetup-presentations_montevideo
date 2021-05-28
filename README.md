@@ -8,7 +8,20 @@
   
   Por más información escribinos a montevideo@rladies.org!
   
- # 2019
+# 2019
+ 
+ **2. R & Education**
+ 
+ *Miércoles 27 de noviembre, 19 hs, Tryolabs*
+ 
+ + [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Presentaci_n_RLadies.pdf)
+ 
+ + Cecilia García e Ivana Marsicano [*La Ruta R del Programa de Evaluación y Estadística de la UTEC*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Cecilia_Ivana.pdf)
+ + Natalia da Silva [*Evaluación y Monitoreo de plataformas educativas con Shiny app*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Natalia_da_Silva.pdf)
+ + Gullermina Costabel: [*Análisis de Supervivencia de las tablets del Plan Ceibal*]
+ 
+ 
+ 
  
  **1. Taller introductorio a Shiny: aplicaciones web interactivas en R**
  
@@ -17,7 +30,7 @@
  + [*Novedades R-Ladies 2019*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/R-Ladies_MVD_primer_encuentro.pdf)
  + Virginia Burguete: [*Taller introductorio a Shiny: aplicaciones web interactivas en R*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/taller_shiny/documentation/Shiny.pdf)
  
- # 2018
+# 2018
  
  **4. Taller de manipulación y transformación de datos con tidyverse**
  
