@@ -8,17 +8,51 @@
   
   Por más información escribinos a montevideo@rladies.org!
   
-# 2019
+# 2021
+
+**1. Taller: datos Geoespaciales en R**
+
+*Miércoles 20 de Mayo, 6:00 hs, virtual*
+
++ María Teresa Ortíz:[*Presentación*](https://mapas-rladies-mv.netlify.app)
+
+
+# 2020 
+
+
+
+  **3. Personalizá tus gráficas con ggplot2**
+  
+  *Miércoles 9 de Diciembre, 6:30 hs, virtual*
+ + Maggie Suero: [*Presentación*](https://github.com/maggiesuero/Rprojects)
  
+  **2. Primeros pasos en el análisis de datos en R!**
+  
+  *Jueves 28 de Mayo,6:00, Virtual*
+  
+  + Daniela Vazquez: [*Presentación*]()
+ 
+  **1. Watch party: RStudio::conf 2020**
+  
+  *Miércoles 29 de Enero, 1:00 hs, FING*
+
+# 2019
+
+ **3. Despedida de año! R-ladies & GURU::mvd**
+ 
+ *Lunes 9 de diciembre, 19 hs, La diaria Lab*
+ 
+  + [*Charlas relámpago*]()
+
  **2. R & Education**
  
  *Miércoles 27 de noviembre, 19 hs, Tryolabs*
  
  + [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Presentaci_n_RLadies.pdf)
  
- + Cecilia García e Ivana Marsicano [*La Ruta R del Programa de Evaluación y Estadística de la UTEC*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Cecilia_Ivana.pdf)
- + Natalia da Silva [*Evaluación y Monitoreo de plataformas educativas con Shiny app*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Natalia_da_Silva.pdf)
- + Gullermina Costabel: [*Análisis de Supervivencia de las tablets del Plan Ceibal*]
+ + Cecilia García e Ivana Marsicano: [*La Ruta R del Programa de Evaluación y Estadística de la UTEC*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Cecilia_Ivana.pdf)
+ + Natalia da Silva: [*Evaluación y Monitoreo de plataformas educativas con Shiny app*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Natalia_da_Silva.pdf)
+ + Gullermina Costabel: [*Análisis de Supervivencia de las tablets del Plan Ceibal*]()
  
  
  
