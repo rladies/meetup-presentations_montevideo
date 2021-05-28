@@ -14,7 +14,7 @@
 
 *Miércoles 20 de Mayo, 6:00 hs, virtual*
 
-+ María Teresa Ortíz:[*Presentación*](https://mapas-rladies-mv.netlify.app)
++ María Teresa Ortíz: [*Presentación*](https://mapas-rladies-mv.netlify.app); [*Proyecto de Rstudio Cloud*](https://rstudio.cloud/project/2488557); [*Grabación*](https://www.youtube.com/watch?v=_pFrWCqTKec&t=3s).
 
 
 # 2020 
@@ -30,7 +30,7 @@
   
   *Jueves 28 de Mayo,6:00, Virtual*
   
-  + Daniela Vazquez: [*Grabación*](https://www.youtube.com/watch?v=BqNuFWCx4cg&t=14s)
+  + Daniela Vazquez: ; [*Proyecto de Rstudio Cloud*](https://rstudio.cloud/project/1327203); [*Grabación*](https://www.youtube.com/watch?v=BqNuFWCx4cg&t=14s)
  
   **1. Watch party: RStudio::conf 2020**
   
