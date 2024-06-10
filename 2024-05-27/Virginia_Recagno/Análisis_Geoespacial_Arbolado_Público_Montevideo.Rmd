@@ -1,0 +1,748 @@
+---
+title: "TP V - Geoestadística"
+author: "Virginia Recagno"
+date: "Febrero de 2024"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+## Natural alero
+
+### Análisis espacial del arbolado público en la ciudad de Montevideo
+
+<blockquote style="text-align:right; font-size: 6;">
+
+*"El mejor momento para plantar un árbol fue hace 20 años. El segundo mejor momento es ahora."* *- Proverbio chino*
+
+</blockquote>
+
+#### *Introducción*
+
+Montevideo, con 530 km², es el departamento menos extenso de Uruguay y aún así el más poblado, con casi la mitad de su población -1,3 millones de personas- habitando la capital. Montevideo destaca por su rambla, su cerro, el candombe resonando por la mayoría de sus calles, y hay hasta quienes dicen que se lo reconoce por su calma y silencio.
+
+Más allá de la idiosincracia citadina, la Intendencia de Montevideo se encuentra en un camino de recuperación de los espacios públicos como puntos de cohesión social, equidad y accesibilidad, al mismo tiempo que apuesta a la construcción de cultura que este tipo de espacios genera. Pero somos y nos construimos también en las calles.
+
+Sobran motivos para dar cuenta de la importancia de los árboles en las vías públicas: quizás la mejora de la calidad de aire surja en primer lugar, la reducción de la temperatura ambiente y la contribución a la proliferación del ecosistema natural que hemos devastado con la irrupción del cemento. Sus beneficios también incluyen controlar la escorrentía del agua de lluvia al absorber parte de ella y reducir la velocidad a la que llega al suelo, lo que ayuda a prevenir inundaciones y a proteger la infraestructura urbana. Y después está la mejora estética y paisajística, y el beneficio psicológico y emocional que tiene la presencia de árboles en las personas. Numerosos estudios demuestran su impacto en la reducción del estrés, la mejora del estado de ánimo y la promoción de la salud mental. Y sobre esto, las autoridades públicas tienen injerencia.
+
+##### *Objetivo*
+
+El presente trabajo busca analizar la asociación entre la cantidad de árboles en espacios públicos y su distribución en los barrios de la zona urbana, teniendo en cuenta el área del barrio y la cantidad de personas que lo habitan. En definitiva, analizar la distribución del arbolado en la ciudad y si existe una correlación espacial en relación los barrios, su área y su cantidad de habitantes.
+
+En Montevideo hay más de 200.000 árboles en el espacio común. Desde 2001 cuando se contabilizaron 210.717 ejemplares, el último censo del arbolado público, de 2008 -viejo, quizás, pero vamos, son árboles- recogió información de poco más del 65% de estos, unos 137.219. Los restantes no pudieron ser georreferenciados (32 %) o fueron extraídos o cortados. Usando este conjunto de datos de arbolado público se investigará si su disposición geoespacial puede proporcionar alguna pista sobre los lugares donde sería beneficioso llevar a cabo una intervención. Es importante mencionar que este trabajo es un ejercicio académico y que tiene sus limitaciones de complejidad, técnicas y de extensión.
+
+#### *Dataset*
+
+Se trabajará con tres dataset, dos de ellos espaciales:
+
+-   El correspondiente al mapa digital que contiene la representación de los árboles del ornato público (no incluye los de parques y plazas ni los del área rural del departamento). Los datos provienen del sistema de arbolado que mantiene el Servicio de Arbolado Público de la Intendencia.
+
+-   El correspondiente al mapa digital que contiene los límites correspondientes a los *barrios* de la ciudad de Montevideo según definición del Instituto Nacional de Estadística (INE). El mismo se actualiza coincidentemente con los censos nacionales y el actual corresponde al Censo 2011, disponible para descargar desde: <https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/estadisticas/mapas-vectoriales-ano-2011>
+
+Ambos dataset fueron extraídos del Sistema de Información Geográfica (SIG) de la Intendencia de Montevideo (IM): <https://sig.montevideo.gub.uy/>
+
+-   Una base de datos que incluye la población por barrio, producto del Censo de 2011. <https://www3.ine.gub.uy/rraa/censo.html>
+
+##### *Librerías*
+
+Usaremos las librerías `tidyverse`, `ggpubr`, `RColorBrewer`, `sf`, `nngeo`, `gstat`, `skimr`, `spdep`, `tmap`, `units` y `spatstat`.
+
+```{r SETUP, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggpubr)
+library(RColorBrewer)
+library(sf)
+library(nngeo)
+library(gstat) 
+library(skimr)
+library(spdep)
+library(tmap)
+library(units)
+library(spatstat) 
+```
+
+##### *Ingreso de datos*
+
+Vamos a utilizar el dataset de arbolado público publicado por el SIG.
+
+```{r ARBOLES, message=FALSE, warning=FALSE}
+arbol <- st_read("MVD/v_sig_arboles/v_sig_arboles.shp")
+```
+
+Y el de barrios de Montevideo:
+
+```{r BARRIOS, message=FALSE, warning=FALSE}
+barrios <- st_read("MVD/v_sig_barrios/v_sig_barrios/v_sig_barrios.shp") 
+barrios_2 <- st_read("MVD/v_sig_barrios/ine_barrios_mvd_nbi85.shp")
+
+# Extraer la columna "area" del dataset barrios_2
+barrios_2 <- as.data.frame(barrios_2) %>% 
+  select(NROBARRIO, AREA_KM)
+
+# Realizar la unión basada en el número de barrio
+barrios <- merge(barrios, barrios_2[, c("NROBARRIO", "AREA_KM")], by = "NROBARRIO", all.x = TRUE)
+```
+
+También el de población, para posteriormente unir el dato al de barrios:
+
+```{r POBLACION, message=FALSE, warning=FALSE}
+poblacion <- st_read("MVD/VivHogPer/Marco2011_ZONA_Montevideo_VivHogPer.shp")
+```
+
+##### *Exploración básica de los datos*
+
+Con la función `summary()` de `rbase`, vamos a ver las primeras filas del dataset.
+
+```{r SUMMARY_ARBOL}
+summary(arbol) 
+```
+
+Vamos a extraer los datos de `arbol` sobre "ejemplares secos".
+
+```{r TRANSFORMA_ARBOL}
+arbol <- arbol %>% 
+  select(ARBOL, ALTURA, NOM_CIENTI, NOM_COMUN, geometry) %>% 
+  filter(!is.na(geometry), 
+         !NOM_COMUN=="Ejemplar seco") #Eliminamos los 1.580 ejemplares secos
+```
+
+Ahora, vemos que `arbol` es un dataset con 135.639 registros y 5 variables:
+
+```{r VARIABLES_ARBOL}
+names(arbol)
+```
+
+| Variable   | Descripción                            |
+|------------|----------------------------------------|
+| ARBOL      | Código de identificación de cada árbol |
+| ALTURA     | Altura del árbol                       |
+| NOM_CIENTI | Nombre científico del árbol            |
+| NOM_COMUN  | Nombre "común" del árbol               |
+| geometry   | Georreferenciación del árbol           |
+
+Con la función `glimpse()` de dplyr podemos ver una breve descripción de las variables del dataset, ver qué tipo de dato forman parte del dataset, etc.
+
+```{r GLIMPSE_ARBOL}
+glimpse(arbol)
+```
+
+`barrios`es un dataset que contiene los 62 barrios de Montevideo y 6 columnas, una de ellas correspondiente a la geometría. Nos vamos a quedar solo con las variables que nos interesan.
+
+```{r TRANSFORMA_BARRIOS}
+barrios <- barrios %>% 
+  select(AREA_KM, BARRIO, NROBARRIO, geometry) %>% 
+  filter(!is.na(geometry)) 
+```
+
+Ahora veamos el contenido de `poblacion`:
+
+```{r SKIM_POBLACION}
+skim(poblacion)
+```
+
+Vamos a tomar la población del dataset `poblacion` para asociarla a cada barrio.
+
+```{r POBLACION_A_BARRIOS}
+# Calculamos la suma de población por barrio
+poblacion_por_barrio <- poblacion %>%
+  group_by(NROBARRIO) %>%
+  summarize(P_TOT_Sum = sum(P_TOT)) 
+  
+# Sacamos la geometría
+poblacion_por_barrio <- as.data.frame(poblacion_por_barrio) %>% 
+  select(NROBARRIO, P_TOT_Sum)
+
+# Realizamos la unión basada en el ID de barrio
+barrios <- merge(barrios, poblacion_por_barrio[, c("NROBARRIO", "P_TOT_Sum")], by = "NROBARRIO", all.x = TRUE)
+```
+
+##### *Visualización de distribuciones y relaciones*
+
+En primer lugar, vamos a visualizar los tipos de árboles que existen en Montevideo.
+
+```{r TIPOS_ARBOLES}
+# Obtenemos una lista de los tipos de árboles únicos
+tipos_arboles <- unique(arbol$NOM_COMUN)
+
+# Ordenamos la lista alfabéticamente
+tipos_arboles_ordenados <- sort(tipos_arboles)
+```
+
+Según el dataset, existen 309 tipos de árboles plantados en espacios públicos de Montevideo.
+
+```{r}
+# Asegúrate de tener la librería leaflet cargada
+library(leaflet)
+
+# Corregir la función extract_coords
+extract_coords <- function(geom) {
+  # Eliminar 'POINT(' y ')' y dividir por el espacio para obtener las coordenadas
+  coords <- gsub("POINT \\((.*)\\)", "\\1", geom)  # Eliminar 'POINT(' y ')'
+  coords <- unlist(strsplit(coords, " "))  # Dividir por el espacio
+  # Convertir las coordenadas a números
+  coords <- as.numeric(coords)
+  return(coords)
+}
+
+# Aplicar la función extract_coords a la columna geom para obtener las coordenadas
+coords_list <- lapply(arbol$geom, extract_coords)
+
+# Crear nuevas columnas lng y lat a partir de la lista de coordenadas
+arbol$lng <- sapply(coords_list, function(x) x[1])
+arbol$lat <- sapply(coords_list, function(x) x[2])
+
+# Crear el mapa con Leaflet
+arbol %>% 
+  head() 
+
+leaflet(arbol) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addMarkers(lng = ~lng, lat = ~lat,
+             popup = ~paste("Árbol No. ", ARBOL, "<br>Nombre común: ", NOM_COMUN, "<br>Nombre científico: ", NOM_CIENTI))
+
+```
+
+
+Ahora vamos a convertir `arbol` a dataframe.
+
+```{r ARBOL_DF}
+arbol_df <- as.data.frame(arbol)
+```
+
+```{r BARRAS_TIPO_ARBOL, message=FALSE, warning=FALSE}
+# Contamos la cantidad de árboles por tipo de árbol
+arbol_df %>%
+  group_by(NOM_COMUN) %>%
+  summarise(cantidad_arboles = n()) %>%
+  arrange(desc(cantidad_arboles)) %>%
+  top_n(10) %>%  # Seleccionamos los 10 tipos de árboles más comunes
+# Creamos el gráfico de barras
+ggplot(aes(x = reorder(NOM_COMUN, cantidad_arboles), 
+           y = cantidad_arboles)) +
+  geom_bar(stat = "identity", fill = "forestgreen") +
+  labs(x = "", 
+       y = "Cantidad", 
+       title = "10 tipos de árboles más comunes en Montevideo", 
+       caption= "Fuente: Sistema de Información Geográfica (SIG)") +
+  guides(fill=guide_legend(title.position = "top", ncol=1))+
+  theme(plot.margin = margin(0.25, 1, 0.25, 0.1, "cm"), #ajustar los margenes del mapa
+        panel.background = element_rect(fill = "gray100", colour = "gray100", linewidth = 2, linetype = "solid"), 
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "dashed", colour = "gray80"), 
+        panel.grid.minor = element_line(linewidth = 0.25, linetype = "dashed", colour = "gray90"), 
+        title=element_text(size=12, face = "bold"),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6), 
+        axis.text.x = element_text(hjust = 1)) +
+  coord_flip() 
+
+```
+
+Veamos cómo se distribuyen espacialmente.
+
+```{r DISTRIB_ESP_ARBOL}
+# Crear el gráfico de dispersión
+ggplot() +
+  geom_sf(data = barrios, color="grey100")+
+  geom_sf(data = arbol, color="forestgreen", alpha=0.1) +
+  labs(title = "Distribución espacial del arbolado en Montevideo", 
+       caption= "Fuente: Sistema de Información Geográfica (SIG)") +
+  guides(fill=guide_legend(title.position = "top", ncol=1))+
+  theme(plot.margin = margin(0.25, 1, 0.25, 0.1, "cm"), #ajustar los margenes del mapa
+        panel.background = element_rect(fill = "gray100", colour = "gray100", linewidth = 2, linetype = "solid"), 
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "dashed", colour = "gray80"), 
+        panel.grid.minor = element_line(linewidth = 0.25, linetype = "dashed", colour = "gray90"), 
+        title=element_text(size=12, face = "bold"),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6), 
+        axis.text.x = element_text(hjust = 1)) +
+  guides(color = FALSE)  # Desactivar la guía de color
+```
+
+Vemos que hay una concentración sobre el centro y sur este del departamento, la llamada área urbana del departamento.
+
+Y ahora vamos a construir dos indicadores de interés: cantidad de árboles por área de cada barrio (`arbol_km2`) y proporción de árboles por habitante (`arbol_hab`), también al interior del barrio.
+
+```{r ARBOL_BARRIO}
+arbol_barrio <- st_intersection(barrios,arbol) %>% 
+  group_by(BARRIO) %>% 
+    summarise(cant_arboles=sum(n())) 
+
+arbol_barrio <- st_join(barrios,arbol_barrio)
+
+arbol_barrio <- arbol_barrio %>% 
+  mutate(arbol_km2 = cant_arboles/AREA_KM, # Cantidad de árboles por km_2 
+         arbol_hab = cant_arboles/P_TOT_Sum) # Proporción de árboles por habitante
+```
+
+Y veamos ahora los barrios con mayor cantidad de árboles.
+
+```{r PLOT_ARBOL_km2}
+ggplot() +
+  geom_sf(data = arbol_barrio, aes(fill = arbol_km2)) +
+  geom_sf(data = barrios, fill=NA)+
+  labs(title = "Proporción de árboles por km2, por barrio", 
+       caption= "Fuente: Sistema de Información Geográfica (SIG)") +
+  guides(fill = guide_colorbar(title = "Árboles por km²", fill=guide_legend(title.position = "top", ncol=1)))+
+  theme(plot.margin = margin(0.25, 1, 0.25, 0.1, "cm"), #ajustar los margenes del mapa
+        panel.background = element_rect(fill = "gray100", colour = "gray100", linewidth = 2, linetype = "solid"), 
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "dashed", colour = "gray80"), 
+        panel.grid.minor = element_line(linewidth = 0.25, linetype = "dashed", colour = "gray90"), 
+        title=element_text(size=12, face = "bold"),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6), 
+        axis.text.x = element_text(hjust = 1)) +
+  scale_fill_gradient(low="#edf8e9", high="forestgreen")
+```
+
+Parece haber una concentración de densidad de árboles al centro de la ciudad.
+
+```{r PLOT_ARBOL_hab}
+ggplot() +
+  geom_sf(data = arbol_barrio, aes(fill = arbol_hab)) +
+  geom_sf(data = barrios, fill=NA)+
+  labs(title = "Proporción de árboles por habitantes, por barrio", 
+       caption= "Fuente: Sistema de Información Geográfica (SIG)") +
+  guides(fill = guide_colorbar(title = "Árboles por hab.", fill=guide_legend(title.position = "top", ncol=1)))+
+  theme(plot.margin = margin(0.25, 1, 0.25, 0.1, "cm"), #ajustar los margenes del mapa
+        panel.background = element_rect(fill = "gray100", colour = "gray100", linewidth = 2, linetype = "solid"), 
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "dashed", colour = "gray80"), 
+        panel.grid.minor = element_line(linewidth = 0.25, linetype = "dashed", colour = "gray90"), 
+        title=element_text(size=12, face = "bold"),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6), 
+        axis.text.x = element_text(hjust = 1)) +
+  scale_fill_gradient(low="#edf8e9", high="forestgreen")
+```
+
+Destaca, por sobre todo, la concentración de árboles que existe en el barrio Carrasco.
+
+Exploración de datos espaciales, de manera interactiva.
+
+```{r TMAP_ARBOL_km2, message=FALSE, warning=FALSE}
+#Activamos modo "view"
+tmap_mode("view")
+
+#Chequeamos que no haya errores
+tmap_options(check.and.fix = TRUE)
+
+#Visualizamos
+tm_shape(arbol_barrio) + 
+  tm_fill("arbol_km2", 
+          style = "quantile", 
+          n = 10, 
+          palette = "Greens",
+          popup.vars = c("BARRIO.x",
+                         "cant_arboles",
+                         "AREA_KM",
+                         "arbol_km2")) +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Cantidad de árboles por barrio", 
+            main.title.size = 0.7,
+            legend.position = c("right", "bottom"),
+            legend.title.size = 0.8)
+
+```
+
+```{r TMAP_ARBOL_hab, message=FALSE, warning=FALSE}
+#Visualizamos
+tm_shape(arbol_barrio) + 
+  tm_fill("arbol_hab", 
+          style = "quantile", 
+          n = 10, 
+          palette = "Greens",
+          popup.vars = c("BARRIO.x",
+                         "cant_arboles",
+                         "P_TOT_Sum",
+                         "arbol_hab")) +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Cantidad de árboles", 
+            main.title.size = 0.7,
+            legend.position = c("right", "bottom"),
+            legend.title.size = 0.8)
+  
+```
+
+#### *Análisis de asociación espacial*
+
+##### 1 - Lista con vecinos
+
+Generamos los datos vecinos (clase `nb`) usando `poly2nb()`.
+
+```{r VECINOS}
+w <- poly2nb(arbol_barrio, 
+             row.names = "NROBARRIO", 
+             queen = FALSE) # Seteo queen = false para que se necesite más de un punto de contacto para configurarse como vecinos.  
+
+class(w) # Clase del componente
+
+```
+
+Exploramos los vecinos
+
+```{r EXPLORA_VECINOS}
+w
+```
+
+Mapeamos cómo son estas relaciones entre vecinos.
+
+```{r PLOT_VECINOS, message=FALSE, warning=FALSE}
+plot(st_geometry(arbol_barrio), 
+     border="grey80", 
+     main = paste0("Relaciones entre vecinos"))
+plot(w, 
+     coords =  st_coordinates(st_centroid(arbol_barrio)),
+     add = TRUE,
+     col="darkorchid", 
+     )
+```
+
+##### 2 - Asignación de pesos a los vecinos
+
+Existen diferentes posibilidades para "ponderar" (asignar pesos) a cada relación con los vecinos. Algunas de las opciones incluye hacer una clasificación "binaria" (con `style='B'`) o "estandarizada" (con `style='W'`).
+
+```{r PESOS_BINARIOS}
+lwb <-  nb2listw(w, style='B')
+lwb
+```
+
+Hay 322 relaciones de primer grado y 644 de segundo grado.
+
+##### 3 - Calcular I Moran (Global)
+
+```{r moranI}
+# Retenemos sólo el Índice de Moran
+I_MORAN <- moran(arbol_barrio$arbol_hab, #Variable
+                 listw = lwb, #Lista de vecinos
+                 n = length(w), #Cantidad de polígonos
+                 S0 = Szero(lwb)) [1] #Suma total de los pesos
+
+print(I_MORAN)
+```
+
+El valor del índice de Moran es de 0.35 lo cual no representa un valor alto para este tipo de prueba. Podría existir cierta tendencia de agrupamiento de valores similares en el espacio.
+
+##### 4 - Testear significatividad
+
+A continuación realizamos una prueba para testear si el I de Moran obtenido es significativo.
+
+```{r moranI_TEST}
+moran.test(arbol_barrio$arbol_hab, # Data
+           lwb) # Pesos
+```
+
+Con un p-valor tan bajo, no podría descartarse la hipótesis de no existe autocorrelación espacial en la cantidad de árboles por habitante.
+
+##### 5 - Correlograma de Moran
+
+```{r CORR_MORAN}
+I_CORR <- sp.correlogram(neighbours = w, # Vecinos
+                         var = arbol_barrio$arbol_hab, # Variable de interés
+                         order = 3,  # La cantidad de órdenes que vamos a estudiar
+                         method = "I", # Método: I de Moran
+                         style = "B", # B corresponde a Binaria
+                         zero.policy = TRUE)
+
+I_CORR
+```
+
+```{r PLOT_CORR_MORAN}
+plot(I_CORR, 
+     main = paste0("Correlograma de Moran"))
+```
+
+Lo que nos indica el correlograma de Moran es que el único orden que puede ser significativo es el primero, es decir los vecinos directos. Los vecinos de los vecinos no tendría sentido.
+
+##### 6 - Diagrama de dispersión de Moran
+
+```{r DISPERSION_Moran}
+mp <- moran.plot(arbol_barrio$arbol_hab,  # Variable de interés
+                 listw = lwb,  # Lista de vecinos
+                 labels = arbol_barrio$BARRIO, 
+                 main = paste0("Diagrama de dispersión")) 
+mp
+```
+
+```{r INFLUYENTES}
+mp %>% 
+  filter(is_inf)
+```
+
+Los barrios que parecen influir en esta investigación son 1 (Ciudad Vieja), 4 (Cordón), 13 (Punta Gorda), 14 (Carrasco) y 29 (Aires Puros).
+
+##### 7 - C de Geary Global
+
+```{r C_GEARY}
+geary.test(arbol_barrio$arbol_hab, lwb)
+```
+
+El C de Geary es de 0.49. Si bien inferior a 1, no próximo a 0. Esto confirma que no podría descartarse la hipótesis de no existe autocorrelación espacial en la cantidad de árboles por habitante.
+
+```{r CORR_GEARY}
+IcorrC <-sp.correlogram(neighbours=w,
+                       var=arbol_barrio$arbol_hab,
+                       order=5,
+                       method="C")
+plot(IcorrC, 
+     main = "Correlograma de Geary")
+```
+
+A nivel global, los valores del arbol por habitante tienen vecinos con valores similares.
+
+##### 8 - Moran local ($I_i$)
+
+Vamos a calcular el índice de Moran local:
+
+```{r i_Moran_LOCAL}
+LOC_MORAN <- localmoran(arbol_barrio$arbol_hab, 
+                        listw = lwb)
+```
+
+###### *Local Indicators of Spatial Association (LISA)*
+
+```{r MORAN_MAP}
+arbol_barrio <- cbind(arbol_barrio, # Base original
+             mp[c("x", "wx")], # Variable y lag (estandarizado)
+             LOC_MORAN,  # Valores de Moran Local
+             attributes(LOC_MORAN)$quadr) %>% # Cuadrantes LISA
+  # Renombramos la columna "Pr(z != E(Ii))"
+  rename(p = Pr.z....E.Ii..) %>%  
+  # Los valores no significativos se diferencian en otra categoría
+  mutate(quad = ifelse(p > 0.05, 5, mean),
+         quad = factor(quad, 
+                       levels = 1:5,
+                       labels = c("Low-Low", 
+                                  "High-Low", 
+                                  "Low-High", 
+                                  "High-High", 
+                                  "No Signif")))
+
+table(arbol_barrio$quad)
+```
+
+Definimos los colores para LISA.
+
+```{r LISA_COL}
+LISA_col <- c("blue2","skyblue1", "lightpink", "red2", "white")
+names(LISA_col) <- levels(arbol_barrio$quad)
+LISA_col
+```
+
+Mostramos estos resultados del hotspots en el scatTerplot.
+
+```{r SCATTERPLOT_LISA}
+arbol_barrio %>%  
+  st_drop_geometry() %>%  
+  ggplot(aes(x = x, y = wx)) + 
+  geom_hline(linetype = 2, yintercept = mean(arbol_barrio$wx)) +
+  geom_vline(linetype = 2, xintercept = mean(arbol_barrio$x)) +
+  geom_point(aes(fill = quad), shape = 21) + 
+  geom_smooth(method = lm, se = F, linetype = 2, color = "darkorchid" ) + 
+  labs(x = "Variable", 
+       y = "Lag",
+       title = "Scatterplot de LISA") +
+    theme(plot.margin = margin(0.25, 1, 0.25, 0.1, "cm"), #ajustar los margenes del mapa
+        panel.background = element_rect(fill = "gray100", colour = "gray100", linewidth = 2, linetype = "solid"), 
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "dashed", colour = "gray80"), 
+        panel.grid.minor = element_line(linewidth = 0.25, linetype = "dashed", colour = "gray90"), 
+        title=element_text(size=12, face = "bold"),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6), 
+        axis.text.x = element_text(hjust = 1)) +
+  scale_fill_manual(values = LISA_col, drop = F)
+```
+
+Por último visualizamos estos resultados en el mapa:
+
+```{r TMAP_LISA, message=FALSE, warning=FALSE}
+tmap_mode("view")
+tm_shape(arbol_barrio) + 
+  tm_fill(col = "quad", #"mean"
+          alpha = 0.6,
+          palette = LISA_col, 
+          style = "fixed",
+          title="Agrupamientos LISA", 
+          popup.vars = c("BARRIO.x",
+                         "cant_arboles",
+                         "P_TOT_Sum",
+                         "arbol_hab")) +
+  tm_legend(outside = TRUE) +
+  tm_borders(col = "Grey")
+```
+
+Del mapa podemos ver que el área pintada en celeste, correspondiente al barrio Carrasco, es un área con alta proporción de árboles por habitantes, rodeada por áreas que presentan una baja proporción del índice analizado.
+
+Vale comentar que Carrasco es el barrio de mayor riqueza acumulada en Montevideo.
+
+```{r ALTO_ALTO}
+alto_alto <-arbol_barrio %>% 
+  filter(quad=="High-High") %>% 
+   as.data.frame(.) %>% 
+   select(BARRIO.x)
+
+knitr::kable(
+  alto_alto, caption = 'Barrios con clusters de arbolado Alto-Alto'
+)
+```
+
+```{r BAJO_BAJO}
+bajo_bajo <-arbol_barrio %>% 
+  filter(quad=="Low-Low") %>% 
+   as.data.frame(.) %>% 
+   select(BARRIO.x)
+
+knitr::kable(
+  bajo_bajo, caption = 'Barrios con clusters de arbolado Bajo-Bajo'
+)
+```
+
+En tanto los barrios pintados en rojo (Punta Gorda, Prado, Reducto y Figurita) son aquellos con mayores niveles de proporción de árboles por cantidad de habitantes, rodeados por vecinos con también valores altos. Mientras que Jardines del Hipódromo, Piedras Blancas, Villa García y Manga son los barrios con bajo indicador rodeados de otros también con bajos valores. Parecería que sería un área indicada para una política de recuperación del arbolado en espacios públicos.
+
+#### *Análisis de procesos puntuales*
+
+Si bien se agruparon por barrios para tener una mirada por área, los árboles representan patrones de puntos, por tanto procederemos a analizar si su frecuencia de ocurrencia es aleatoria o responde a algún patrón.
+
+##### 1 - Definición de ventana
+
+Definimos la `ventana` (clase `owin`) en la cual vamos a trabajar.
+
+```{r VENTANA}
+MVD <- summarise(barrios) # Junta todo en un solo objeto del tamaño de la ciudad
+MVD <- nngeo::st_remove_holes(MVD) # Remueve agujeros
+
+Ventana <- as.owin(st_geometry(MVD)) # Me quedo con la geometría de la ciudad y lo convierte a ventana con as.owin()
+unitname(Ventana) <- "Meter" # Indicamos unidad de medida utilizada
+
+plot(Ventana)
+```
+
+##### 2 - Generación de patrón de puntos
+
+Generamos el patrón de puntos (clase `ppp`).
+
+```{r ARBOL_PPP}
+arbol_ppp <- as.ppp(st_geometry(arbol), W = Ventana)
+arbol_ppp
+```
+
+Para evitar los puntos duplicados movemos de forma aleatoria los puntos (con `rjitter()`).
+
+```{r EVITA_DUPL}
+set.seed(200)
+arbol_ppp <- rjitter(arbol_ppp, 
+                     retry=TRUE, 
+                     nsim = 1, 
+                     radius = 2, 
+                     drop = TRUE)
+
+cat("\nExisten puntos duplicados:", any(duplicated.ppp(arbol_ppp)))
+
+```
+
+```{r PLOT_PPP}
+plot(arbol_ppp, 
+     cols = "forestgreen", 
+     main = "Dispersión espacial de arbolado montevideano")
+```
+
+Miremos al interior del objeto `ppp`.
+
+```{r SUMMARY_PPP}
+summary(arbol_ppp)
+```
+
+##### 3 - Estadísticas de resumen de primer orden
+
+###### 3.1 - Intensidad del patrón de puntos
+
+Lo primero que podemos saber es cuál es la intensidad del patrón de árboles (cuantos árboles se han plantado por unidad de área).
+
+```{r INTENSIDAD}
+cat("Intensidad de árboles por metro cuadrado:", 
+    intensity(arbol_ppp)  %>%  
+      format(scientific = F), "\n")
+
+# Lo pasamos a km para visualizar mejor
+cat("Intensidad de árboles por kilómetro cuadrado:", 
+    format( (intensity(arbol_ppp) * (1000^2) ), 
+            scientific = F, digits = 4, 
+            decimal.mark = ",") )
+
+```
+
+Esto asume que la intensidad del patrón de puntos es homogénea, es decir, que en todos lados hay la misma cantidad de árboles, pero claramente esto no es así.
+
+###### 3.2 - Intensidad por cuadrantes
+
+Una forma de saber si existe un patrón aleatorio es subdividir la ventana en porciones que cubran toda el área de interés (*teselación*) y calcular la intensidad en cada una de estas áreas.
+
+Optamos por la teselación por hexágonos.
+
+```{r INT_HEXAGONOS}
+# Generamos hexágonos con lado 1500m
+H <- hextess(Ventana, 1500)
+
+QC_arbol_HEX <- quadratcount(arbol_ppp, tess = H) # H tiene que ser del tipo tess, que se genera con la función hextess()
+
+plot(arbol_ppp, 
+     main = "Conteo por cuadrante (hexagonal)",
+     cols = "forestgreen")
+plot(QC_arbol_HEX, add = TRUE, cex = 1)
+```
+
+```{r CALOR_HEXAGONOS}
+intensity(QC_arbol_HEX, 
+          image = T)  %>% # image es para poder generar la imagen 
+  plot(main = "Intensidad por cuadrante (hexagonal)") 
+
+```
+
+###### 3.3 - Test de hipótesis de Poisson
+
+Vamos a evaluar si se trata de un patrón homogéneo de Poisson (CSR) mediante un test de hipótesis:
+
+-   Hipótesis nula ($H_0$): la intensidad es homogénea y la distribución de casos en los cuadrantes responde a una distribución de Poisson (CSR)
+
+-   Hipótesis alternativa ($H_1$) : la intensidad no es homogénea (en una forma no especificada).
+
+Si consideramos una significación de $0.05$, ¿el patrón de distribución espacial es aleatorio? La forma por defecto que calcula la significancia está basada en $\chi^2$, lo cual supone algunas restricciones: (a) el numero de conteos por cuadrado tiene que ser \> 5; y (b) Cada uno de los cuadrantes es relativamente similar en superficie.
+
+Dado que no todos los cuadrantes son de igual superficie y además algunos conteos son menores a 5 usamos el método Montecarlo.
+
+```{r TEST_HIPOTESIS}
+quadrat.test(QC_arbol_HEX, 
+             method = "MonteCarlo", 
+             nsim = 1000)
+```
+
+Existe una probilidad de 99.8% de que rechazar la hipótesis nula esté bien, y los datos no sigan una distribución al azar.
+
+##### 4 - Estadísticas de resumen de segundo orden
+
+Ademas de preguntar si el patrón de puntos es significativamente distinto de la aleatoriedad espacial completa (considerando distintos rangos de distancia o escalas espaciales), estos indicadores permiten determinar si los puntos tienden a formar agregaciones o presentar dispersión (regularidad) en un rango de distancias.
+
+Como el tamaño de la muestra dificulta correr simulaciones, se evaluará la concentración de puntos a partir de la densidad.
+
+###### Intensidad de Kernel
+
+La función `density()` genera una imagen "raster" con los valores estimados de la densidad para cada punto de la ventana.
+
+```{r DENSIDAD}
+DD <- density(arbol_ppp, 
+              edge = F) # No tiene en cuenta el efecto del borde
+
+plot(DD, 
+     main='Densidad de arboles en Montevideo')
+```
+
+#### *Conclusiones*
+
+Después de realizar los análisis de procesos puntuales y de asociación espacial, parecería que el proceso de arbolado de Montevideo no obedece un orden aleatorio y que habría áreas de prioridad para llevar a cabo políticas de forestación urbana. Tal como se comentó anteriormente, hay ciertas áreas que parecerían prioritarias y estás están explicitadas en el análisis LISA, en aquel cluster identificado como "bajo-bajo". 
+
+Por otro lado, surge del análisis que Ciudad Vieja, si bien no conforma un cluster podría identificarse como un barrio para llevar a cabo una intervención de forestación ya que presenta valores bajos de los dos índices estudiados: `arbol_hab` y `arbol_km2`. 
+
+#### *Referencias bibliográficas*
+
+Bozzo, A. et. al. (2021). Consultoría para apoyo al desarrollo e implementación de planes de arbolado urbano y áreas verdes departamentales considerando la capacidad de producción de viveros, para la adaptación al cambio climático y la variabilidad. Montevideo, Uruguay.
+
+Gabinete Ambiental (2017). Política Nacional de Cambio Climático.
+
+Ochoa de la Torre, J.M. (2010). Ciudad, vegetación e impacto climático. El confort en los espacios urbanos. Palapa: Universidad de Colima, México
+
+------------------------------------------------------------------------
+
+Virginia Recagno - [virginia.recagno\@gmail.com](mailto:virginia.recagno@gmail.com){.email} Trabajo final de Geoestadística para el posgrado Big Data e Inteligencia Territorial de FLACSO Argentina
