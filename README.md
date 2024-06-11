@@ -22,18 +22,26 @@
 
 *Lunes 27 de Mayo 7:00 hs, presencial*
 
-+ Paula García: [*Presentación, Reportando con R y Quarto en la gestión de la crisis hídrica*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/R-Ladies_paula-garcia.html)
-+ Paula Pereda: [*Presentación: Datos pero que sean de moda*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Paula_Pereda.pdf)
-+ Virginia Recagno: [*Presentación: Natural alero: análisis geoespacial del arbolado público en la ciudad de Montevideo*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Arbolado.html)
++ Paula García: [*Reportando con R y Quarto en la gestión de la crisis hídrica*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/R-Ladies_paula-garcia.html)
++ Paula Pereda: [*Datos pero que sean de moda*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Paula_Pereda.pdf)
++ Virginia Recagno: [* Natural alero: análisis geoespacial del arbolado público en la ciudad de Montevideo*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Arbolado.html)
 
 # 2023
 
-**Todas las energías en la organización de LatinR2023 en Montevideo**
+**Esfuerzos concentrados en LatinR2023 en Montevideo**
 [**Info de LatinR**](https://latin-r.com)
 
-# 2022  
+# 2022
 
-**R-encuentro RLadies & GURU**
+**1. R-encuentro RLadies & GURU**
+
+*Miércoles 29 de Noviembre 18:00 hs, presencial*
+
++ Natalia da Silva [**Presentación RladiesMVD y GURU**](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2022-11-29/RladiesMVD_GURU)
++ Valentina Franco-Trecu **Comportamiento de buceo en lobos marinos**
++ Mauro Loprete **Paquete metaSurvey, para procesar encuestas mediante metaprogramación.**
++ Cecilia Bardier **Modelos bayesianos con JAGS desde R**
++ Juan Manuel Barreneche **Las mil y un maneras de ingresar mal los datos: la historia de una app de validación**
   
 # 2021
 
@@ -41,7 +49,7 @@
 
 *Lunes 27 de Setiembre 2021*
 
-+ Maêlle Salmon:[*Presentación*](https://rladiesmvd-maelle.netlify.app/#/), [*grabación*]
++ Maëlle Salmon: [*Presentación*](https://rladiesmvd-maelle.netlify.app/#/), [*Grabación*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2022-11-29/Maelle.mp4)
 
 **1. Taller: datos Geoespaciales en R**
 
