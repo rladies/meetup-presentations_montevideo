@@ -1,12 +1,16 @@
-<img src="https://github.com/rladies/starter-kit/blob/master/logo/R-LadiesGlobal_RBG_online_LogoWithText_Horizontal.png" data-canonical-src="https://github.com/rladies/starter-kit/blob/master/logo/R-LadiesGlobal_RBG_online_LogoWithText_Horizontal.png" width="300" height="100" />
+<img src="hex.jpeg" width="300" height="300" />
  
+
+
 # Archivos de los encuentros de R-Ladies Montevideo
  
   R-Ladies Montevideo fue fundado en Junio de 2017.
   
-  Co-organizadoras: Natalia da Silva, Daniela Vázquez, Paula Pereda, María Inés Fariello y Valentina Colistro.
+  Co-organizadoras: Natalia da Silva, Daniela Vázquez, Paula Pereda, María Inés Fariello, Valentina Colistro y Virginia Recagno.
   
-  Por más información escribinos a montevideo@rladies.org!
+Por más información escribinos a montevideo@rladies.org!
+
+
   
 # 2024 
 
@@ -38,10 +42,10 @@
 *Miércoles 29 de Noviembre 18:00 hs, presencial*
 
 + Natalia da Silva [**Presentación RladiesMVD y GURU**](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2022-11-29/RladiesMVD_GURU)
-+ Valentina Franco-Trecu **Comportamiento de buceo en lobos marinos**
-+ Mauro Loprete **Paquete metaSurvey, para procesar encuestas mediante metaprogramación.**
-+ Cecilia Bardier **Modelos bayesianos con JAGS desde R**
-+ Juan Manuel Barreneche **Las mil y un maneras de ingresar mal los datos: la historia de una app de validación**
++ Valentina Franco-Trecu [**Comportamiento de buceo en lobos marinos**]()
++ Mauro Loprete [**Paquete metaSurvey, para procesar encuestas mediante metaprogramación**]()
++ Cecilia Bardier [**Modelos bayesianos con JAGS desde R**]()
++ Juan Manuel Barreneche [**Las mil y un maneras de ingresar mal los datos: la historia de una app de validación**]()
   
 # 2021
 
