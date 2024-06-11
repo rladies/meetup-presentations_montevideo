@@ -4,11 +4,44 @@
  
   R-Ladies Montevideo fue fundado en Junio de 2017.
   
-  Co-organizadoras: Natalia da Silva, Daniela Vázquez, Paula Pereda y Maine Fariello 
+  Co-organizadoras: Natalia da Silva, Daniela Vázquez, Paula Pereda, María Inés Fariello y Valentina Colistro.
   
   Por más información escribinos a montevideo@rladies.org!
   
+# 2024 
+
+
+
+**2. Taller de Quarto**
+
+*Lunes 10 de Junio 18:30 hs, presencial*
+
++ Paula Pereda: [Presentacion: Hola Quarto!](https://paula.quarto.pub/hola-quarto/#/hello-quarto-title); [Ejercicios](https://github.com/paulapereda/hola-quarto-soluciones)
+
+**1. Primer encuentro**
+
+*Lunes 27 de Mayo 7:00 hs, presencial*
+
++ Paula García: [*Presentación, Reportando con R y Quarto en la gestión de la crisis hídrica*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/R-Ladies_paula-garcia.html)
++ Paula Pereda: [*Presentación: Datos pero que sean de moda*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Paula_Pereda.pdf)
++ Virginia Recagno: [*Presentación: Natural alero: análisis geoespacial del arbolado público en la ciudad de Montevideo*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Arbolado.html)
+
+# 2023
+
+**Todas las energías en la organización de LatinR2023 en Montevideo**
+[**Info de LatinR**](https://latin-r.com)
+
+# 2022  
+
+**R-encuentro RLadies & GURU**
+  
 # 2021
+
+**2. ¡Por favor... Dibújame un proyecto!**
+
+*Lunes 27 de Setiembre 2021*
+
++ Maêlle Salmon:[*Presentación*](https://rladiesmvd-maelle.netlify.app/#/), [*grabación*]
 
 **1. Taller: datos Geoespaciales en R**
 
@@ -19,58 +52,53 @@
 
 # 2020 
 
-
-
-  **3. Personalizá tus gráficas con ggplot2**
+**3. Personalizá tus gráficas con ggplot2**
   
-  *Miércoles 9 de Diciembre, 6:30 hs, virtual*
- + Maggie Suero: [*Presentación*](https://github.com/maggiesuero/Rprojects)
+*Miércoles 9 de Diciembre, 6:30 hs, virtual*
++ Maggie Suero: [*Presentación*](https://github.com/maggiesuero/Rprojects)
  
-  **2. Primeros pasos en el análisis de datos en R!**
+**2. Primeros pasos en el análisis de datos en R!**
   
-  *Jueves 28 de Mayo,6:00, Virtual*
+*Jueves 28 de Mayo,6:00, Virtual*
   
-  + Daniela Vazquez: ; [*Proyecto de Rstudio Cloud*](https://rstudio.cloud/project/1327203); [*Grabación*](https://www.youtube.com/watch?v=BqNuFWCx4cg&t=14s)
++ Daniela Vazquez: ; [*Proyecto de Rstudio Cloud*](https://rstudio.cloud/project/1327203); [*Grabación*](https://www.youtube.com/watch?v=BqNuFWCx4cg&t=14s)
  
-  **1. Watch party: RStudio::conf 2020**
+**1. Watch party: RStudio::conf 2020**
   
-  *Miércoles 29 de Enero, 1:00 hs, FING*
+*Miércoles 29 de Enero, 1:00 hs, FING*
 
 # 2019
 
- **3. Despedida de año! R-ladies & GURU::mvd**
+**3. Despedida de año! R-ladies & GURU::mvd**
  
- *Lunes 9 de diciembre, 19 hs, La diaria Lab*
+*Lunes 9 de diciembre, 19 hs, La diaria Lab*
  
-  + [*Charlas relámpago*]()
++ [*Charlas relámpago*]()
 
- **2. R & Education**
+**2. R & Education**
  
- *Miércoles 27 de noviembre, 19 hs, Tryolabs*
+*Miércoles 27 de noviembre, 19 hs, Tryolabs*
  
- + [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Presentaci_n_RLadies.pdf)
++ [*Novedades R-Ladies*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Presentaci_n_RLadies.pdf)
  
- + Cecilia García e Ivana Marsicano: [*La Ruta R del Programa de Evaluación y Estadística de la UTEC*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Cecilia_Ivana.pdf)
- + Natalia da Silva: [*Evaluación y Monitoreo de plataformas educativas con Shiny app*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Natalia_da_Silva.pdf)
- + Gullermina Costabel: [*Análisis de Supervivencia de las tablets del Plan Ceibal*]()
++ Cecilia García e Ivana Marsicano: [*La Ruta R del Programa de Evaluación y Estadística de la UTEC*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Cecilia_Ivana.pdf)
++ Natalia da Silva: [*Evaluación y Monitoreo de plataformas educativas con Shiny app*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-11-26-Edu/Natalia_da_Silva.pdf)
++ Gullermina Costabel: [*Análisis de Supervivencia de las tablets del Plan Ceibal*]()
  
+**1. Taller introductorio a Shiny: aplicaciones web interactivas en R**
  
+*Miércoles 29 de mayo, 19.00 hs, Scanntech*
  
- 
- **1. Taller introductorio a Shiny: aplicaciones web interactivas en R**
- 
- *Miércoles 29 de mayo, 19.00 hs, Scanntech*
- 
- + [*Novedades R-Ladies 2019*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/R-Ladies_MVD_primer_encuentro.pdf)
- + Virginia Burguete: [*Taller introductorio a Shiny: aplicaciones web interactivas en R*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/taller_shiny/documentation/Shiny.pdf)
++ [*Novedades R-Ladies 2019*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/R-Ladies_MVD_primer_encuentro.pdf)
++ Virginia Burguete: [*Taller introductorio a Shiny: aplicaciones web interactivas en R*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2019-05-29-shiny/taller_shiny/documentation/Shiny.pdf)
  
 # 2018
  
- **4. Taller de manipulación y transformación de datos con tidyverse**
+**4. Taller de manipulación y transformación de datos con tidyverse**
  
- *Martes 23 de octubre, 19:00 hs, Scanntech*
+*Martes 23 de octubre, 19:00 hs, Scanntech*
  
- + Lucía Coudet: [*Taller de manipulación y transformación de datos con tidyverse*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-10-23-tidyverse/rladies_tidyverse.pdf)
++ Lucía Coudet: [*Taller de manipulación y transformación de datos con tidyverse*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2018-10-23-tidyverse/rladies_tidyverse.pdf)
  
 **3. Primer aniversario R-Ladies Montevideo**
 
