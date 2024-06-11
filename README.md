@@ -28,7 +28,7 @@ Por más información escribinos a montevideo@rladies.org!
 
 + Paula García: [*Reportando con R y Quarto en la gestión de la crisis hídrica*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/R-Ladies_paula-garcia.html)
 + Paula Pereda: [*Datos pero que sean de moda*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Paula_Pereda.pdf)
-+ Virginia Recagno: [* Natural alero: análisis geoespacial del arbolado público en la ciudad de Montevideo*](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Arbolado.html)
++ Virginia Recagno: [**Natural alero: análisis geoespacial del arbolado público en la ciudad de Montevideo**](https://github.com/rladies/meetup-presentations_montevideo/blob/master/2024-05-27/Arbolado.html)
 
 # 2023
 
